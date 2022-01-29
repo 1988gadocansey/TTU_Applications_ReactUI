@@ -3,6 +3,8 @@ import { NavItem, NavLink } from 'reactstrap';
 import { Link } from 'react-router-dom';
 import authService from './AuthorizeService';
 import { ApplicationPaths } from './ApiAuthorizationConstants';
+import {Menu} from "antd";
+import PoweroffOutlined from "@ant-design/icons/lib/icons/PoweroffOutlined";
 
 export class LoginMenu extends Component {
     constructor(props) {
@@ -46,16 +48,24 @@ export class LoginMenu extends Component {
 
     authenticatedView(userName, profilePath, logoutPath) {
         return (<Fragment>
-            <NavItem>
+           {/* <NavItem>
                 <NavLink tag={Link} className="text-dark" to={profilePath}>Hello {userName}</NavLink>
             </NavItem>
             <NavItem>
                 <NavLink tag={Link} className="text-dark" to={logoutPath}>Logout</NavLink>
-            </NavItem>
+            </NavItem>*/}
+
+             
+                <Link to={logoutPath}>
+                    Logout
+                </Link>
+
+           
+            
         </Fragment>);
 
     }
-
+     
     anonymousView(registerPath, loginPath) {
         return (<Fragment>
             <NavItem>

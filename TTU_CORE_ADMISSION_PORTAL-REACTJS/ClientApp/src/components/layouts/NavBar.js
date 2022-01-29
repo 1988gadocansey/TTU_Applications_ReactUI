@@ -54,7 +54,7 @@ const NavBar = () => {
             <center><img src={logo} alt="Logo"
                          style={{width: '100px' ,display: 'inline'}} className="img-responsive"/>
                 <h6 style={{color:"white"}}> TTU | Admissions</h6>
-                <LoginMenu/>
+               
             </center>
             </div>
             <Menu className={'sideBarNav'} theme="dark" defaultSelectedKeys={['1']} mode="inline">
@@ -72,10 +72,8 @@ const NavBar = () => {
                     </Link>
                 </Menu.Item>
 
-                <Menu.Item key="3" icon={<PoweroffOutlined/>}>
-                    <Link to={'/authentication/login'}>
-                        Logout
-                    </Link>
+                <Menu.Item key="3"  icon={<PoweroffOutlined/>}>
+                     <LoginMenu/>
                    
                 </Menu.Item>
 
