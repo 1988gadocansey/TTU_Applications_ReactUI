@@ -3,7 +3,7 @@ import Home from "./components/Home";
 import {BrowserRouter, Route} from 'react-router-dom'
 import Form from "./components/forms/Form";
 import PictureUpload from "./components/avatar/PictureUpload";
-import ResultUpload from "./components/forms/ResultUpload";
+import ResultUpload from "./components/results/ResultUpload";
 import PrintPreview from "./components/print/PrintPreview";
 import Index from "./components/layouts/Index";
 import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';

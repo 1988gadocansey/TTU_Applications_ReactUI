@@ -8,6 +8,7 @@ import { Col, Row, Typography, Button } from 'antd';
 import PoweroffOutlined from '@ant-design/icons/lib/icons/PoweroffOutlined'
 import AppLogo from "./AppLogo";
 import Breadcrumbs from "./Breadcrumbs";
+import {LoginMenu} from "../api-authorization/LoginMenu";
 
 const { Header, Content, Footer, Sider } = Layout;
 const { SubMenu } = Menu;
@@ -16,7 +17,7 @@ const { Text } = Typography
 const handleLogout = () => {
  return alert("logout....")
 }
-export class Index  extends React.Component {
+ class Index  extends React.Component {
     state = {
         collapsed: false,
     };
@@ -36,7 +37,9 @@ export class Index  extends React.Component {
                  <NavBar/>
                 <Layout className="site-layout" >
 
-                    <Header className="site-layout-background" style={{ padding: 0 }} />
+                    <Header className="site-layout-background" style={{ padding: 0 }} >
+                        <div style={{float:"right",marginRight:"50px"}}><LoginMenu/></div>
+                    </Header>
                     <Content style={{ margin: '0 16px' }}>
                          <Breadcrumbs/>
                         <div   style={{ padding: 24, minHeight: 360 }}>

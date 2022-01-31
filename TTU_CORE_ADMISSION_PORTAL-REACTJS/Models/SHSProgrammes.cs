@@ -15,7 +15,7 @@
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace TTU_CORE_ASP_ADMISSION_PORTAL.Models
+namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
 {
     public class SHSProgrammes
     {

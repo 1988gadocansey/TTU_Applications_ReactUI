@@ -1,5 +1,6 @@
 import React from "react";
 import {Card, Col, Form, Input, Row} from 'antd';
+import Breadcrumbs from "../layouts/Breadcrumbs";
 
 
 const {Meta} = Card;
@@ -7,6 +8,9 @@ const {Meta} = Card;
 const Dashboard = () => {
     return (
         <div>
+            <Breadcrumbs>
+                <p>Go back</p>
+            </Breadcrumbs>
             <div className="ant-row"
                  style={{marginLeft: '-10px', marginRight: '-10px', marginBottom: '5px', rowGap: '5px'}}>
                 <div xm="24" className="ant-col ant-col-24 ant-col-sm-6 ant-col-lg-6"

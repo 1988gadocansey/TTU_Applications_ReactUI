@@ -17,7 +17,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 
-namespace TTU_CORE_ASP_ADMISSION_PORTAL.Models
+namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
 {
     public class ApplicantIssueModel: BaseEntity
     {

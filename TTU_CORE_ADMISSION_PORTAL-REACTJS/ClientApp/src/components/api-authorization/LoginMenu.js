@@ -56,9 +56,19 @@ export class LoginMenu extends Component {
             </NavItem>*/}
 
              
+               
+            <div style={{float:"right",marginRight:"50px"}}>
+               <span> Hello {userName} </span>
+                {/*<Menu.Item key="4"  icon={<PoweroffOutlined/>}>
+                    <Link to={logoutPath}>
+                        Preview
+                    </Link>
+
+                </Menu.Item>*/}
                 <Link to={logoutPath}>
                     Logout
                 </Link>
+            </div>
 
            
             

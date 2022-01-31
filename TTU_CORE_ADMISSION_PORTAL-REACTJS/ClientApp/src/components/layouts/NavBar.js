@@ -71,11 +71,16 @@ const NavBar = () => {
                         Form
                     </Link>
                 </Menu.Item>
+                <Menu.Item key="3" icon={<FileOutlined/>}>
+                    <Link to={'/preview'}>
+                        Preview
+                    </Link>
+                </Menu.Item>
 
-                <Menu.Item key="3"  icon={<PoweroffOutlined/>}>
+               {/* <Menu.Item key="4"  icon={<PoweroffOutlined/>}>
                      <LoginMenu/>
                    
-                </Menu.Item>
+                </Menu.Item>*/}
 
 
             </Menu>
