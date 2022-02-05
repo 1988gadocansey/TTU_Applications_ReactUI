@@ -1,0 +1,5 @@
+export const Types = {
+    NEW_FORM: 'NEW_FORM',
+    SET_FORM_DATA: 'SET_CANDIDATE_DATA',
+    GET_FORM_DETAIL: 'GET_FORM_DETAIL',
+}

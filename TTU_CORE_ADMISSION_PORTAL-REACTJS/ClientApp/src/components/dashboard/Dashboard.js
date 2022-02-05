@@ -1,10 +1,6 @@
 import React from "react";
 import {Card, Col, Form, Input, Row} from 'antd';
 import Breadcrumbs from "../layouts/Breadcrumbs";
-
-
-const {Meta} = Card;
-
 const Dashboard = () => {
     return (
         <div>
@@ -127,17 +123,10 @@ const Dashboard = () => {
                             &nbsp;
                             <div className="form-actions" data-qa-continue="">
                                 <center>
-                                    <table align="center">
-
-                                        <tr>
-                                            <td>
-                                                <a className="md-btn   md-btn-primary uk-margin-small-top"
+                                            <a className="md-btn   md-btn-primary uk-margin-small-top"
                                                    href="/Preview">Preview Form</a>
 
-                                            </td>
-                                        </tr>
-                                    </table>
-
+                                           
                                 </center>
                             </div>
 

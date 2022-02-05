@@ -1,9 +1,17 @@
 import React,{Component} from "react";
 import Dashboard from "./dashboard/Dashboard";
-
-const Home =()=> {
+import {useSelector} from "react-redux";
+ 
+ const Home = () => {
+ 
+    
     return(
+        <>
+         
         <Dashboard/>
+            </>
     )
-}
+
+};
+
 export default Home

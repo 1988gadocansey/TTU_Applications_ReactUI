@@ -1,0 +1,5 @@
+export const Types = {
+    NEW_RESULT: 'NEW_RESULT',
+    SET_RESULT: 'SET_RESULT_DATA',
+    DELETE_RESULT: 'DELETE_RESULT',
+}

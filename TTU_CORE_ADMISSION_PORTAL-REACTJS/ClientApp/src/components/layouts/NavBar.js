@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Layout, Menu, Breadcrumb} from 'antd';
+import {Layout, Menu, Breadcrumb, Row} from 'antd';
 import {
     FileOutlined,
 } from '@ant-design/icons';
@@ -10,6 +10,7 @@ import PoweroffOutlined from '@ant-design/icons/lib/icons/PoweroffOutlined'
 import {Link} from "react-router-dom";
 import logo from './../../ttu.png' // relative path to image 
 import {LoginMenu} from "../api-authorization/LoginMenu";
+
 const handleLogout = () => {
     return alert("logout....")
 }
@@ -51,11 +52,14 @@ const NavBar = () => {
                 </div>
             </div>*/}
             <div className="ttu-color ant-">
-            <center><img src={logo} alt="Logo"
-                         style={{width: '100px' ,display: 'inline'}} className="img-responsive"/>
-                <h6 style={{color:"white"}}> TTU | Admissions</h6>
-               
-            </center>
+                <Row justify="space-around" align="middle">
+                    <center><img src={logo} alt="Logo"
+                                 style={{width: '100px', display: 'inline'}} className="img-responsive"/>
+                        <h6 style={{color: "white"}}> TTU | Admissions</h6>
+
+                    </center>
+                </Row>
+
             </div>
             <Menu className={'sideBarNav'} theme="dark" defaultSelectedKeys={['1']} mode="inline">
                 <p></p>
@@ -77,7 +81,7 @@ const NavBar = () => {
                     </Link>
                 </Menu.Item>
 
-               {/* <Menu.Item key="4"  icon={<PoweroffOutlined/>}>
+                {/* <Menu.Item key="4"  icon={<PoweroffOutlined/>}>
                      <LoginMenu/>
                    
                 </Menu.Item>*/}
