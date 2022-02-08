@@ -1,7 +1,7 @@
 import {Types} from '../actions/user/Types'
 
 const initialState = {
-    loggedInUser: [{id:1,name:'gad',level:'100h'}]
+    loggedInUser: []
 }
 
 function userReducer(state = initialState, {type, payload}) {

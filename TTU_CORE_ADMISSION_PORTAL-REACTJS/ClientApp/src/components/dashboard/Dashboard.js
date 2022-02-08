@@ -1,7 +1,44 @@
-import React from "react";
-import {Card, Col, Form, Input, Row} from 'antd';
+import React, {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import Breadcrumbs from "../layouts/Breadcrumbs";
-const Dashboard = () => {
+import {geLoggedInUser, getFormData} from "../../actions/user/UsersAction"
+ const Dashboard = () => {
+    
+    const users =useSelector((state) => state.people.loggedInUser);
+    const dispatch = useDispatch()
+    useEffect(getFormData(dispatch),[])
+     
+     
+     
+    console.log("forms",users)
+   /* const renderForecastsTable=(users) =>{
+        return (
+            <table className='table table-striped' aria-labelledby="tabelLabel">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Temp. (C)</th>
+                    <th>Temp. (F)</th>
+                    <th>Summary</th>
+                </tr>
+                </thead>
+                <tbody>
+                {users.map(forecast =>
+                    <tr key={forecast.date}>
+                        <td>{forecast.date}</td>
+                        <td>{forecast.temperatureC}</td>
+                        <td>{forecast.temperatureF}</td>
+                        <td>{forecast.summary}</td>
+                    </tr>
+                )}
+                </tbody>
+            </table>
+        );
+    }
+   /!* let contents = users
+        ? <p><em>Loading...</em></p>
+        : renderForecastsTable(users);*!/*/
+
     return (
         <div>
             <Breadcrumbs>
@@ -128,6 +165,8 @@ const Dashboard = () => {
 
                                            
                                 </center>
+                                
+                                {/*{renderForecastsTable(users)}*/}
                             </div>
 
                         </div>
