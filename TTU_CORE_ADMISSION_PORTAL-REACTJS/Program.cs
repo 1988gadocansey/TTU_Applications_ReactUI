@@ -32,7 +32,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<ApplicationUser>(
+        options => options.SignIn.RequireConfirmedAccount = true
+        )
     .AddEntityFrameworkStores<ApplicationDbContext>();
  
 

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.EntityFrameworkCore;
 using RestSharp;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
@@ -35,24 +36,22 @@ public class ApplicationFormController : ControllerBase
     }
 
     [HttpGet]
+    [Produces("application/json")]
     public async Task<IActionResult> IndexAsync()
     {
-        Console.Write("hello from controller");
+         
         _logger.LogInformation("User visited dashboard.");
-        var _formService = new FormService(_dbContext);
+        /*var _formService = new FormService(_dbContext);
+        //var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
         
-        /*var userId = User.FindFirstValue(ClaimTypes.NameIdentifier); // will give the user's userId
-        Console.Write("user"+userId)*/;
-        
-        var currentUser = await _userManager.GetUserAsync(User);
-       // if (currentUser == null) return Challenge();
-        var applicationUser = await _userManager.GetUserAsync(User);
+         
+         var applicationUser = await _userManager.GetUserAsync(User);
 
-        var applicationNo = applicationUser?.FormNo;
+       var applicationNo = applicationUser?.FormNo;
 
         var status = applicationUser?.Admitted;
 
-
+        Console.WriteLine("user....."+applicationUser.ToString());*/
         /*if (applicationNo == null)
         {
             var Year = (DateTime.Now.Year).ToString();
@@ -149,8 +148,12 @@ public class ApplicationFormController : ControllerBase
                 room = applicantModel.RoomNo
             });
         }*/
+        var applicationUser = await _userManager.GetUserAsync(User);
 
-        return Ok(new {form=applicationUser,name="Gad"});
+        var applicationNo = applicationUser?.Email;
+        var data = _dbContext.BankModel.Find(1);
+        Console.Write("data"+data.Account);
+        return Ok(new {form=applicationNo,account=data.Account});
     }
     [Route("/finalize")]
     public async Task<IActionResult> FinanlizedAsync()

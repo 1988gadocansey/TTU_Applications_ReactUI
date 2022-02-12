@@ -46,18 +46,14 @@ API.interceptors.request.use(
     async config => {
       //const token = sessionStorage.getItem('jwt');
       const token = await authService.getAccessToken();
+      console.log("token",token)
       if (token) {
-       // config.headers.Authorization = `Bearer ${token}`;
-          config.headers=!token ? {} : {'Authorization': `Bearer ${token}`};
+       config.headers.Authorization = `Bearer ${token}`;
+          //config.headers=!token ? {} : {'Authorization': `Bearer ${token}`};
       } else {
         delete API.defaults.headers.common.Authorization;
       }
-       /* config.authority="https://localhost:7262";
-        config.client_id="TTU_CORE_ADMISSION_PORTAL_REACTJS";
-        config.redirect_uri= "https://localhost:7262/authentication/login-callback";
-
-        config.response_type="id_token token";
-        config.scope= "TTU_CORE_ADMISSION_PORTAL_REACTJSAPI openid profile"*/
+       
       return config;
     },
 
