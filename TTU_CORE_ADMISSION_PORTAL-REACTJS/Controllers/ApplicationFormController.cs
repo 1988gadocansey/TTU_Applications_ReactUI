@@ -26,7 +26,8 @@ public class ApplicationFormController : ControllerBase
     private readonly IHelper _helper;
     private readonly UserManager<ApplicationUser> _userManager;
 
-    public ApplicationFormController(ILogger<ApplicationFormController> logger, IHelper helper, UserManager<ApplicationUser> userManager,
+    public ApplicationFormController(ILogger<ApplicationFormController> logger, IHelper helper,
+        UserManager<ApplicationUser> userManager,
         ApplicationDbContext dbContext)
     {
         _logger = logger;
@@ -39,25 +40,17 @@ public class ApplicationFormController : ControllerBase
     [Produces("application/json")]
     public async Task<IActionResult> IndexAsync()
     {
-         
         _logger.LogInformation("User visited dashboard.");
-        /*var _formService = new FormService(_dbContext);
-        //var userId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
-        
-         
-         var applicationUser = await _userManager.GetUserAsync(User);
-
-       var applicationNo = applicationUser?.FormNo;
-
-        var status = applicationUser?.Admitted;
-
-        Console.WriteLine("user....."+applicationUser.ToString());*/
-        /*if (applicationNo == null)
+        var _formService = new FormService(_dbContext);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var formData = _dbContext.Users.FirstOrDefault(a => a.Id == userId);
+        var applicationNo = formData?.FormNo;
+        var status = formData?.Admitted;
+        if (applicationNo == null)
         {
             var Year = (DateTime.Now.Year).ToString();
             var application = _formService.GetFormNo();
-            var user = await _userManager.GetUserAsync(User);
-            user.FormNo = Year + application;
+            formData.FormNo = Year + application;
 
             if (await _dbContext.SaveChangesAsync() == 1)
             {
@@ -66,11 +59,17 @@ public class ApplicationFormController : ControllerBase
                 await _formService.UpdateFormNoAsync();
             }
         }
-
         else
         {
-            return Ok(new { name = "Gad", level = "200" });
-            //return Ok(new {formno=applicationNo});
+            
+            return Ok(new {
+                formNo=applicationNo,
+                pictureUploaded=formData.PictureUploaded,
+                formCompleted=formData.FormCompleted,
+                admisionStatus=formData.Admitted
+                
+            }
+            );
         }
 
         if ((bool)status)
@@ -140,6 +139,10 @@ public class ApplicationFormController : ControllerBase
 
             return Ok(new
             {
+                formNo=applicationNo,
+                pictureUploaded=formData.PictureUploaded,
+                formCompleted=formData.FormCompleted,
+                admisionStatus=formData.Admitted,
                 fees = FeesPaids, type = applicantData.AdmissionType, hall = hallname,
                 feedata = responseClientFeeComponents.Content,
                 hallfee = hallfees,
@@ -147,14 +150,11 @@ public class ApplicationFormController : ControllerBase
                 resident = applicantModel.ResidentialStatus,
                 room = applicantModel.RoomNo
             });
-        }*/
-        var applicationUser = await _userManager.GetUserAsync(User);
+        }
 
-        var applicationNo = applicationUser?.Email;
-        var data = _dbContext.BankModel.Find(1);
-        Console.Write("data"+data.Account);
-        return Ok(new {form=applicationNo,account=data.Account});
+        return Ok();
     }
+
     [Route("/finalize")]
     public async Task<IActionResult> FinanlizedAsync()
     {

@@ -1,17 +1,15 @@
 import { Types } from './Types'
-export const uploadFile = (data) => () => {
-    return new Promise((resolve, reject) => {
-        api().post('/candidate/docs/upload', data).then((res) => {
+import API from "../../utils/api";
+export const  uploadPhoto = (dispatch) => async () => {
+    await API.get('/applicationform')
+        .then((res) => {
             dispatch({
-              type: Types.NEW_AVATAR,
-              payload: res.data
+                type: Types.GET_USER,
+                payload: res.data
             })
-            resolve(res)
+
         }).catch((err) => {
-            reject(err)
+            console.log("error",err)
         })
-    })
-}
-export const getAvatar = () =>{
-    
+
 }

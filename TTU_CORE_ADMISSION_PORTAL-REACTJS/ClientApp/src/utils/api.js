@@ -57,7 +57,13 @@ API.interceptors.request.use(
       return config;
     },
 
-    error => Promise.reject(error)
+    error => {
+        const code = error && error.response ? error.response.status : 0
+        if (code === 401 || code === 403 || code === 419) {
+            window.location.replace('/Identity/Account/Login')
+        }
+        return Promise.reject(error)
+    }
 );
 
 export default API;

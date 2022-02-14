@@ -1,4 +1,4 @@
 export const Types = {
-    NEW_AVATAR: 'UPLOAD_AVATAR',
-    GET_AVATAR: 'GET_AVATAR',
+    UPLOAD_AVATAR: 'UPLOAD_AVATAR',
+    SHOW_AVATAR: 'SHOW_AVATAR',
 }

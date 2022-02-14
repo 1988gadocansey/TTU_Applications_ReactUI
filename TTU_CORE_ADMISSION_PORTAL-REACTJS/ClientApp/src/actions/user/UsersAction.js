@@ -1,5 +1,4 @@
 import {Types} from './Types'
-import authService from "../../components/api-authorization/AuthorizeService";
 import API from "../../utils/api";
 
 /*export const geLoggedInUser = (user) =>{

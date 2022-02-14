@@ -23,13 +23,13 @@ class App extends Component {
                     <div>
                         <Index>
                             <Route path="/" exact={true} component={Home}/>
-                            <AuthorizeRoute path="/home" exact={true} component={Home}/>
-                            <AuthorizeRoute path="/pictureUpload" component={PictureUpload}/>
-                            <AuthorizeRoute path="/form/fill" component={Form}/>
-                            <AuthorizeRoute path="/resultUpload" component={ResultUpload}/>
+                            <AuthorizeRoute path="/Home" exact={true} component={Home}/>
+                            <AuthorizeRoute path="/PictureUpload" component={PictureUpload}/>
+                            <AuthorizeRoute path="/Form" component={Form}/>
+                            <AuthorizeRoute path="/ResultUpload" component={ResultUpload}/>
 
                             <AuthorizeRoute path='/fetch-data' component={FetchData}/>
-                            <AuthorizeRoute path='/preview' component={PrintPreview}/>
+                            <AuthorizeRoute path='/Preview' component={PrintPreview}/>
                             <Route path={ApplicationPaths.ApiAuthorizationPrefix}
                                    component={ApiAuthorizationRoutes}/>
                         </Index>
