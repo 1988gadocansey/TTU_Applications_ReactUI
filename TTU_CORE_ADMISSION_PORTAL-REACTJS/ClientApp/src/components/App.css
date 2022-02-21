@@ -36262,3 +36262,7 @@ a.text-dark:hover, a.text-dark:focus {
 .ant-page-header-heading-title {
   white-space: break-spaces !important;
 }
+.avatar-uploader > .ant-upload {
+  width: 128px;
+  height: 128px;
+}

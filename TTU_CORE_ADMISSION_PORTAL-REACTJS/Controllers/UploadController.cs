@@ -15,7 +15,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
     [Route("[controller]")]
     public class UploadController : ControllerBase
     {
-        private readonly ILogger<UploadController> _logger;
+        /*private readonly ILogger<UploadController> _logger;
         private string serverUrl = "https://photos.ttuportal.com/public/albums/thumbnails";
         private readonly IConfiguration _configuration;
 
@@ -136,7 +136,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
             }
         }
 
-
+*/
         
     }
 }

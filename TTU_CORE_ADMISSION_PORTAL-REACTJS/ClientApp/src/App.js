@@ -1,6 +1,6 @@
 import './components/App.css';
 import Home from "./components/Home";
-import {BrowserRouter, Route} from 'react-router-dom'
+import {Switch, Route, Link} from "react-router-dom";
 import Form from "./components/forms/Form";
 import PictureUpload from "./components/avatar/PictureUpload";
 import ResultUpload from "./components/results/ResultUpload";
@@ -10,32 +10,21 @@ import AuthorizeRoute from './components/api-authorization/AuthorizeRoute';
 import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizationRoutes';
 import {ApplicationPaths} from './components/api-authorization/ApiAuthorizationConstants';
 import {FetchData} from "./components/FetchData";
-import {connect} from "react-redux";
 import {Component} from "react";
-
 class App extends Component {
-
     render() {
         return (
-
             <div className="App">
-                <BrowserRouter>
-                    <div>
-                        <Index>
-                            <Route path="/" exact={true} component={Home}/>
-                            <AuthorizeRoute path="/Home" exact={true} component={Home}/>
-                            <AuthorizeRoute path="/PictureUpload" component={PictureUpload}/>
-                            <AuthorizeRoute path="/Form" component={Form}/>
-                            <AuthorizeRoute path="/ResultUpload" component={ResultUpload}/>
-
-                            <AuthorizeRoute path='/fetch-data' component={FetchData}/>
-                            <AuthorizeRoute path='/Preview' component={PrintPreview}/>
-                            <Route path={ApplicationPaths.ApiAuthorizationPrefix}
-                                   component={ApiAuthorizationRoutes}/>
-                        </Index>
-                    </div>
-                </BrowserRouter>
-
+                <Index>
+                    <Route path="/" exact={true} component={Home}/>
+                    <AuthorizeRoute path="/Home" exact={true} component={Home}/>
+                    <AuthorizeRoute path="/PictureUpload" component={PictureUpload}/>
+                    <AuthorizeRoute path="/Form" component={Form}/>
+                    <AuthorizeRoute path="/ResultUpload" component={ResultUpload}/>
+                    <AuthorizeRoute path='/fetch-data' component={FetchData}/>
+                    <AuthorizeRoute path='/Preview' component={PrintPreview}/>
+                    <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes}/>
+                </Index>
             </div>
         );
     }

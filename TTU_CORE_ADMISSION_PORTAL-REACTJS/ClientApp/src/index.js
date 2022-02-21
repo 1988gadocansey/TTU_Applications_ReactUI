@@ -13,13 +13,10 @@ const baseUrl = document.getElementsByTagName('base')[0].getAttribute('href');
 const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-  <BrowserRouter basename={baseUrl}>
-    <Provider store={Store}>
-        
-             <App />
-    </Provider>
-     
-        
+    <BrowserRouter basename={baseUrl}>
+        <Provider store={Store}>
+            <App />
+        </Provider>
   </BrowserRouter>,
   rootElement);
 
