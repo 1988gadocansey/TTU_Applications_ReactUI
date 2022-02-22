@@ -42,6 +42,12 @@
         <None Remove="$(SpaRoot)**" />
         <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
     </ItemGroup>
+    <ItemGroup>
+      <Folder Include="ClientApp\src\actions\nationalities" />
+      <Folder Include="ClientApp\src\actions\programmes" />
+      <Folder Include="ClientApp\src\actions\regions" />
+      <Folder Include="ClientApp\src\actions\schools" />
+    </ItemGroup>
 
     <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
         <!-- Ensure Node.js is installed -->

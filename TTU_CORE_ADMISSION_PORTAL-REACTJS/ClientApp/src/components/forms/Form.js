@@ -1,91 +1,70 @@
 import React, {useEffect, useState} from "react";
-import {Button, Cascader, DatePicker, Form, Input, InputNumber, Radio, Select, Switch, TreeSelect} from "antd";
+import {Steps, Button, message} from 'antd';
+import FirstStep from "./FirstStep";
+import SecondStep from "./SecondStep";
+import ThirdStep from "./ThirdStep";
+
+const {Step} = Steps;
+
+const steps = [
+    {
+        title: 'First',
+        content: <FirstStep />
+    },
+    {
+        title: 'Second',
+        content: <SecondStep/>
+    },
+    {
+        title: 'Last',
+        content: <ThirdStep/>
+    },
+];
 
 const Forms = () => {
-    const [componentSize, setComponentSize] = useState('default');
+    const [current, setCurrent] = React.useState(0);
 
-    const onFormLayoutChange = ({size}) => {
-        setComponentSize(size);
+    const next = () => {
+        setCurrent(current + 1);
+    };
+
+    const prev = () => {
+        setCurrent(current - 1);
     };
 
     return (
-        <div className="site-layout-background">
-
-            <Form
-                labelCol={{
-                    span: 4,
-                }}
-                wrapperCol={{
-                    span: 14,
-                }}
-                layout="horizontal"
-                initialValues={{
-                    size: componentSize,
-                }}
-                onValuesChange={onFormLayoutChange}
-                size={componentSize}
-            >
-                <Form.Item label="Form Size" name="size">
-                    <Radio.Group>
-                        <Radio.Button value="small">Small</Radio.Button>
-                        <Radio.Button value="default">Default</Radio.Button>
-                        <Radio.Button value="large">Large</Radio.Button>
-                    </Radio.Group>
-                </Form.Item>
-                <Form.Item label="Input">
-                    <Input/>
-                </Form.Item>
-                <Form.Item label="Select">
-                    <Select>
-                        <Select.Option value="demo">Demo</Select.Option>
-                    </Select>
-                </Form.Item>
-                <Form.Item label="TreeSelect">
-                    <TreeSelect
-                        treeData={[
-                            {
-                                title: 'Light',
-                                value: 'light',
-                                children: [
-                                    {
-                                        title: 'Bamboo',
-                                        value: 'bamboo',
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="Cascader">
-                    <Cascader
-                        options={[
-                            {
-                                value: 'zhejiang',
-                                label: 'Zhejiang',
-                                children: [
-                                    {
-                                        value: 'hangzhou',
-                                        label: 'Hangzhou',
-                                    },
-                                ],
-                            },
-                        ]}
-                    />
-                </Form.Item>
-                <Form.Item label="DatePicker">
-                    <DatePicker/>
-                </Form.Item>
-                <Form.Item label="InputNumber">
-                    <InputNumber/>
-                </Form.Item>
-                <Form.Item label="Switch" valuePropName="checked">
-                    <Switch/>
-                </Form.Item>
-                <Form.Item label="Button">
-                    <Button>Button</Button>
-                </Form.Item>
-            </Form>
-        </div>
+        <>
+           
+                <div className="ant-card">
+                    <div className="ant-card-body">
+                        <mark>Fields marked in red asteriks(*) are required.</mark>
+                        <Steps current={current}>
+                            {steps.map(item => (
+                                <Step key={item.title} title={item.title}/>
+                            ))}
+                        </Steps>
+                        <div className="steps-contents">{steps[current].content}</div>
+                        <div className="steps-action">
+                            {current < steps.length - 1 && (
+                                <Button type="primary" onClick={() => next()}>
+                                    Next
+                                </Button>
+                            )}
+                            {current === steps.length - 1 && (
+                                <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                                    Done
+                                </Button>
+                            )}
+                            {current > 0 && (
+                                <Button style={{margin: '0 8px'}} onClick={() => prev()}>
+                                    Previous
+                                </Button>
+                            )}
+                        </div>
+                    </div>
+                </div>
+             
+        </>
     );
 };
 export default Forms
