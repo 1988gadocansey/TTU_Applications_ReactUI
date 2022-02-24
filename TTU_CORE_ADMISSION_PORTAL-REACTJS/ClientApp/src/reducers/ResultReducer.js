@@ -5,7 +5,7 @@ const initialState = {
     resultData: {},
     deleteResult: {},
 }
-export default function formReducer(state = initialState, action) {
+export default function resultReducer(state = initialState, action) {
     switch (action.type) {
         case Types.NEW_RESULT:
             return {...state, result: state.result.concat(action.payload)}

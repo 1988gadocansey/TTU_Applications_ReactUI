@@ -1,7 +1,7 @@
 import {Types} from '../actions/forms/Types'
 const initialState = {
     newForm: {},
-    formData: {},
+    formContent: {},
     formDetail: {},
 }
 export default function formReducer(state = initialState, action) {

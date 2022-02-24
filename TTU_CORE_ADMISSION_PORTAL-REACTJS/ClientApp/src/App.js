@@ -11,6 +11,8 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import {ApplicationPaths} from './components/api-authorization/ApiAuthorizationConstants';
 import {FetchData} from "./components/FetchData";
 import {Component} from "react";
+import ApplicationForm from "./components/forms/ApplicationForm";
+import FormContainer from "./containers/FormContainer";
 class App extends Component {
     render() {
         return (
@@ -19,7 +21,7 @@ class App extends Component {
                     <Route path="/" exact={true} component={Home}/>
                     <AuthorizeRoute path="/Home" exact={true} component={Home}/>
                     <AuthorizeRoute path="/PictureUpload" component={PictureUpload}/>
-                    <AuthorizeRoute path="/Form" component={Form}/>
+                    <AuthorizeRoute path="/Form" component={FormContainer}/>
                     <AuthorizeRoute path="/ResultUpload" component={ResultUpload}/>
                     <AuthorizeRoute path='/fetch-data' component={FetchData}/>
                     <AuthorizeRoute path='/Preview' component={PrintPreview}/>
