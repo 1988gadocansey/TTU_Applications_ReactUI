@@ -22,5 +22,8 @@
  }
 .ttu-color{
     padding: 20px;
-    background: #d8da3c;
+    background: rgb(253,243,3,1);
+}
+.titles{
+    color: rgb(26,52,126,1)
 }

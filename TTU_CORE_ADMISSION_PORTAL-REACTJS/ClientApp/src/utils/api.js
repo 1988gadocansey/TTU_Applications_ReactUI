@@ -1,5 +1,6 @@
 import axios from 'axios'
 import authService from "../components/api-authorization/AuthorizeService";
+import {ApplicationPaths, QueryParameterNames} from "../components/api-authorization/ApiAuthorizationConstants";
 /*export  async function api() {
   const token = await authService.getAccessToken();
   const makeRequest = axios.create({
@@ -60,7 +61,8 @@ API.interceptors.request.use(
     error => {
         const code = error && error.response ? error.response.status : 0
         if (code === 401 || code === 403 || code === 419) {
-            window.location.replace('/Identity/Account/Login')
+           // window.location.replace('/Identity/Account/Login')
+            window.location.href = `${ApplicationPaths.Login}?${QueryParameterNames.ReturnUrl}=${encodeURI(window.location.href)}`;
         }
         return Promise.reject(error)
     }

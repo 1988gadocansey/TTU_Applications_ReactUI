@@ -25,6 +25,7 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.0" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.2" />
         <PackageReference Include="Npgsql" Version="6.0.3" />
         <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.1" />
         <PackageReference Include="Renci.SshNet.Async" Version="1.4.0" />
@@ -44,7 +45,6 @@
     </ItemGroup>
     <ItemGroup>
       <Folder Include="ClientApp\src\actions\nationalities" />
-      <Folder Include="ClientApp\src\actions\programmes" />
       <Folder Include="ClientApp\src\actions\regions" />
       <Folder Include="ClientApp\src\actions\schools" />
     </ItemGroup>

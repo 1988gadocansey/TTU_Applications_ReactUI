@@ -1,7 +1,6 @@
 import './components/App.css';
 import Home from "./components/Home";
 import {Switch, Route, Link} from "react-router-dom";
-import Form from "./components/forms/Form";
 import PictureUpload from "./components/avatar/PictureUpload";
 import ResultUpload from "./components/results/ResultUpload";
 import PrintPreview from "./components/print/PrintPreview";
@@ -11,7 +10,6 @@ import ApiAuthorizationRoutes from './components/api-authorization/ApiAuthorizat
 import {ApplicationPaths} from './components/api-authorization/ApiAuthorizationConstants';
 import {FetchData} from "./components/FetchData";
 import {Component} from "react";
-import ApplicationForm from "./components/forms/ApplicationForm";
 import FormContainer from "./containers/FormContainer";
 class App extends Component {
     render() {

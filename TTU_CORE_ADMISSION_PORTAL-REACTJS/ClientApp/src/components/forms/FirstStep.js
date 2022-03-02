@@ -12,27 +12,30 @@ export default function FirstStep(props) {
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
+    
     const [current, setCurrent] = useState(0)
     return <Row gutter={5}>
         <Col span={8} xs={24} sm={8} md={8}>
             <Form.Item
-                initialValue={props.bioData.title}
-                name="title" label="Title" rules={[{ required: true, message: 'Required' }]}>
-                <Select disabled={props.bioData.completed === 1} placeholder="Select Title" allowClear>
-                    <Select.Option value="Mr.">Mr</Select.Option>
-                    <Select.Option value="Mrs.">Mrs</Select.Option>
-                    <Select.Option value="Miss">Miss</Select.Option>
-                    <Select.Option value="Madam">Madam</Select.Option>
-                    <Select.Option value="Prof.">Prof</Select.Option>
-                    <Select.Option value="Dr.">Dr</Select.Option>
-                </Select>
+                initialValue={props.bioData.LastName}
+                name={'LastName'}
+                label="Surname"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Required',
+                    },
+                ]}
+            >
+                <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
+          
         </Col>
         <Col span={8} xs={24} sm={12} md={8}>
             <Form.Item
-                initialValue={props.bioData.surName}
-                name={'surName'}
-                label="Surname"
+                initialValue={props.bioData.FirstName}
+                name={'FirstName'}
+                label="First Name"
                 rules={[
                     {
                         required: true,
@@ -46,7 +49,7 @@ export default function FirstStep(props) {
         <Col span={8} xs={24} sm={12} md={8}>
             <Form.Item
                 initialValue={props.bioData.otherNames}
-                name={'otherNames'}
+                name={'OtherNames'}
                 label="Other Names"
                 rules={[
                     {
@@ -59,8 +62,16 @@ export default function FirstStep(props) {
         </Col>
         <Col span={8} xs={24} sm={8} md={8}>
             <Form.Item
-                initialValue={props.bioData.gender}
-                name="gender" label="Gender">
+                initialValue={props.bioData.Gender}
+                name="Gender" label="Gender"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Required',
+                    }
+                ]}
+            
+            >
                 <Select showSearch disabled={props.bioData.completed === 1} placeholder="Select Gender" allowClear>
                     <Select.Option value="Male">Male</Select.Option>
                     <Select.Option value="Female">Female</Select.Option>
@@ -72,36 +83,173 @@ export default function FirstStep(props) {
                 initialValue={props.bioData.dateOfBirth != null && moment(props.bioData.dateOfBirth, 'YYYY-MM-DD')}
                 name="dateOfBirth"
                 label="Date of Birth"
-                /* rules={[
+                 rules={[
                   {
                     type: 'object',
                     required: true,
                     message: 'Required',
                   }
-                ]} */>
+                ]} >
                 <DatePicker disabled={props.bioData.completed === 1} style={{ width: '100%' }} format={'YYYY-MM-DD'}/>
             </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={12} md={8}>
             <Form.Item
-                initialValue={props.bioData.placeOfBirth}
-                name={'placeOfBirth'}
-                label="Place Of Birth"
-                /* rules={[
+                initialValue={props.bioData.Title}
+                name="Title" label="Title" rules={[{ required: true, message: 'Required' }]}>
+                <Select disabled={props.bioData.completed === 1} placeholder="Select Title" allowClear>
+                    <Select.Option value="Mr.">Mr</Select.Option>
+                    <Select.Option value="Mrs.">Mrs</Select.Option>
+                    <Select.Option value="Miss">Miss</Select.Option>
+                    <Select.Option value="Madam">Madam</Select.Option>
+                    <Select.Option value="Prof.">Prof</Select.Option>
+                    <Select.Option value="Dr.">Dr</Select.Option>
+                </Select>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={8} md={8}>
+            <Form.Item
+                initialValue={props.bioData.Gender}
+                name="MaritalStatus" label="Marital"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Required',
+                    }
+                ]}
+
+            >
+                <Select showSearch disabled={props.bioData.completed === 1} placeholder="Select status" allowClear>
+                    <Select.Option selected={true} value="Single">Single</Select.Option>
+                    <Select.Option value="Married">Married</Select.Option>
+                </Select>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.dateOfBirth != null && moment(props.bioData.dateOfBirth, 'YYYY-MM-DD')}
+                name="dateOfBirth"
+                label="Date of Birth"
+                rules={[
+                    {
+                        type: 'object',
+                        required: true,
+                        message: 'Required',
+                    }
+                ]} >
+                <DatePicker disabled={props.bioData.completed === 1} style={{ width: '100%' }} format={'YYYY-MM-DD'}/>
+            </Form.Item>
+        </Col>
+
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.PostGPRS}
+                name={'PostGPRS'}
+                label="Post GPRS"
+            >
+                <Input disabled={props.bioData.Completed === 1}/>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.Phone}
+                name={'Phone'}
+                label="Phone Number"
+                 rules={[
                   {
                     required: true,
                     message: 'Required',
                   },
-                ]} */
+                ]}  
+            >
+                <Input disabled={props.bioData.completed === 1}/>
+            </Form.Item>
+        </Col>
+        
+    <Col span={8} xs={24} sm={12} md={8}>
+        <Form.Item
+            initialValue={props.bioData.EmergencyPhone}
+            name={'EmergencyPhone'}
+            label="Alt Phone"
+           
+        >
+            <Input disabled={props.bioData.completed === 1}/>
+        </Form.Item>
+    </Col>
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.Email}
+                name="Email"
+                label="E-mail"
+                rules={[
+                    {
+                        type: 'email',
+                        message: 'Not valid E-mail!',
+                    },
+                    /* {
+                      required: true,
+                      message: 'Required',
+                    }, */
+                ]}
+            >
+                <Input disabled={props.bioData.completed === 1}/>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.HomeTown}
+
+                name="HomeTown"
+                label="Hometown"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Required',
+                  },
+                ]} 
+            >
+                <Input disabled={props.bioData.completed === 1}/>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={12} md={8}>
+            <Form.Item
+                initialValue={props.bioData.Address}
+
+                name="Address"
+                label="Address"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Required',
+                    },
+                ]}
             >
                 <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={8} md={8}>
             <Form.Item
-                initialValue={props.bioData.nationality}
-                name="nationality" label="Nationality"
-                /* rules={[{ required: true, message: 'Required' }]} */
+                initialValue={props.bioData.Awaiting}
+                name="Awaiting" label="Awaiting"
+                rules={[
+                    {
+                        required: true,
+                        message: 'Required',
+                    }
+                ]}
+
+            >
+                <Select showSearch disabled={props.bioData.completed === 1} placeholder="Select status" allowClear>
+                    <Select.Option selected={true} value="false">No</Select.Option>
+                    <Select.Option value="true">Yes</Select.Option>
+                </Select>
+            </Form.Item>
+        </Col>
+        <Col span={8} xs={24} sm={8} md={8}>
+            <Form.Item
+                initialValue={props.bioData.Nationality}
+                name="Nationality" label="Country"
+                 rules={[{ required: false, message: 'Required' }]} 
             >
                 <Select disabled={props.bioData.completed === 1} placeholder="Select Nationality" allowClear showSearch>
                     {
@@ -126,24 +274,9 @@ export default function FirstStep(props) {
                 </Select>
             </Form.Item>
         </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.homeTown}
-                name={'homeTown'}
-                label="Home Town"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Input disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
         <Col span={8} xs={24} sm={8} md={8}>
-            <Form.Item initialValue={props.bioData.region} name="region" label="Region"
-                /* rules={[{ required: true, message: 'Required' }]} */
+            <Form.Item initialValue={props.bioData.Region} name="region" label="Region"
+                 rules={[{ required: true, message: 'Required' }]} 
             >
                 <Select disabled={props.bioData.completed === 1} placeholder="Select Region" allowClear showSearch>
                     {
@@ -158,151 +291,21 @@ export default function FirstStep(props) {
                 </Select>
             </Form.Item>
         </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.telephone}
-                name={'telephone'}
-                label="Phone Number"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Input disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.email}
-                name="email"
-                label="E-mail"
-                rules={[
-                    {
-                        type: 'email',
-                        message: 'Not valid E-mail!',
-                    },
-                    /* {
-                      required: true,
-                      message: 'Required',
-                    }, */
-                ]}
-            >
-                <Input disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
         <Col span={8} xs={24} sm={8} md={8}>
-            <Form.Item initialValue={props.bioData.faculty} name="faculty" label="Faculty"
-                /* rules={[{ required: true, message: 'Required' }]} */
+            <Form.Item initialValue={props.bioData.District} name="District" label="District"
+                       rules={[{ required: true, message: 'Required' }]}
             >
-                <Select disabled={props.bioData.completed === 1} placeholder="Select Faculty" allowClear showSearch>
+                <Select disabled={props.bioData.completed === 1} placeholder="Select Region" allowClear showSearch>
                     {
-                        faculties.map((faculty) => {
+                        regions.map((region) => {
                             return (
-                                <Select.Option key={faculty} value={faculty}>
-                                    {faculty}
+                                <Select.Option key={region} value={region}>
+                                    {region}
                                 </Select.Option>
                             )
                         })
                     }
                 </Select>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.programme}
-
-                name="programme"
-                label="Programme"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Input disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.cgpa}
-                name="cgpa"
-                label="CGPA"
-                /* rules={[{
-                  required: true,
-                  message: 'Enter a valid CGPA'
-                }]} */
-            >
-                <InputNumber max={5} style={{ width: '100%' }} disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.year}
-
-                name="year"
-                label="Year"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <InputNumber min={1990} max={new Date().getFullYear()} disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.indexNumber}
-                name="indexNumber"
-                label="Index Number"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Input disabled={props.bioData.completed === 1}/>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.hall}
-                name="hall"
-                label="Hall"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Select showSearch disabled={props.bioData.completed === 1} placeholder="Select Hall" allowClear>
-                    <Select.Option value="Ahanta">Ahanta</Select.Option>
-                    <Select.Option value="Nzema">Nzema</Select.Option>
-                    <Select.Option value="GetFund">GetFund</Select.Option>
-                    <Select.Option value="GHACEM">GHACEM</Select.Option>
-                    <Select.Option value="University Hall">University Hall</Select.Option>
-                </Select>
-            </Form.Item>
-        </Col>
-        <Col span={8} xs={24} sm={12} md={8}>
-            <Form.Item
-                initialValue={props.bioData.formerInstitution}
-                name="formerInstitution"
-                label="Former Institution"
-                /* rules={[
-                  {
-                    required: true,
-                    message: 'Required',
-                  },
-                ]} */
-            >
-                <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
         </Col>
         <Col span={8} xs={24} sm={12} md={8}>

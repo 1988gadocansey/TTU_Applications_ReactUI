@@ -51,11 +51,11 @@ const NavBar = () => {
                     <Title level={5} className={'sideProfileText'}>Gad Ocansey</Title>
                 </div>
             </div>*/}
-            <div className="ttu-color ant-">
+            <div className="ttu-color ant">
                 <Row justify="space-around" align="middle">
                     <center><img src={logo} alt="Logo"
                                  style={{width: '100px', display: 'inline'}} className="img-responsive"/>
-                        <h6 style={{color: "white"}}> TTU | Admissions</h6>
+                        <h6 class='titles'> TTU | Admissions</h6>
 
                     </center>
                 </Row>
