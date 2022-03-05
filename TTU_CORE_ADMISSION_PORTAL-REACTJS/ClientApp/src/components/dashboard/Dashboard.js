@@ -4,11 +4,14 @@ import Breadcrumbs from "../layouts/Breadcrumbs";
 import {getFormData} from "../../actions/user/UsersAction"
 import {Button, Form} from "antd";
 import {Link} from "react-router-dom";
+import {getProgrammes} from "../../actions/programmes/ProgrammeActions";
  const Dashboard = () => {
     
     const user =useSelector((state) => state.people.loggedInUser);
+    const programmes =useSelector((state) => state.programmes.choices);
     const dispatch = useDispatch()
     useEffect(getFormData(dispatch),[])
+    useEffect(getProgrammes(dispatch),[])
      const action= (user?.pictureUploaded === 1) ? <Link to={'/Form'}><Button>Start Application</Button></Link>: <Link to={'/pictureUpload'}><Button>Upload Picture</Button></Link>
      const admissionStatus = (user?.admisionStatus === true) ? "Admitted" : "Applicant";
      const formCompleted = (user?.formCompleted ===1) ? "Yes" : "No";

@@ -6,9 +6,15 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
 
 const context =  [
   "/weatherforecast",
+  "/api",
   "/applicationform",
- 
-    
+    "/Ama",
+    "/selectbox/districts",
+    "/SelectBox",
+  "/SelectBox/Programmes",
+  "/selectbox/programme",
+    "/applicationform/finalize",
+    "/finalize",
   "/_configuration",
   "/.well-known",
   "/Identity",

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Services;
+using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
 {
@@ -15,21 +16,18 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
     [Route("[controller]")]
     public class ResultController : ControllerBase
     {
-        private readonly ILogger<ResultController> _logger;
-
-
+        /*private readonly ILogger<ResultController> _logger;
+        private readonly IHelper _helper;
         private readonly ApplicationDbContext _dbContext;
-
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private UserManager<ApplicationUser> _userManager;
 
         public ResultController(ILogger<ResultController> logger, UserManager<ApplicationUser> userManager,
-            ApplicationDbContext dbContext, IHttpContextAccessor httpContextAccessor)
+            ApplicationDbContext dbContext, IHelper helper)
         {
             _logger = logger;
             _userManager = userManager;
             _dbContext = dbContext;
-            _httpContextAccessor = httpContextAccessor;
+            _helper = helper;
         }
 
         [HttpGet]
@@ -81,7 +79,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
                     }
                 }
 
-                var grades_ = _formService.GetTotalAggregate(Core, CoreAlt, Electives);
+                var grades_ = _helper.GetTotalAggregate(Core, CoreAlt, Electives);
                 return Ok(new
                 {
                     years = _formService.GetYears(), subjects = _formService.GetSubjects(),
@@ -334,5 +332,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
 
             return Ok(new { results = result });
         }
+    }*/
     }
 }

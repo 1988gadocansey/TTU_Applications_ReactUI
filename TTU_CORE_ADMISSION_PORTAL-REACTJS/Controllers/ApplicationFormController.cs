@@ -41,7 +41,6 @@ public class ApplicationFormController : ControllerBase
     public async Task<IActionResult> IndexAsync()
     {
         _logger.LogInformation("User visited dashboard.");
-        var _formService = new FormService(_dbContext);
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var formData = _dbContext.Users.FirstOrDefault(a => a.Id == userId);
         var applicationNo = formData?.FormNo;
@@ -49,14 +48,14 @@ public class ApplicationFormController : ControllerBase
         if (applicationNo == null)
         {
             var Year = (DateTime.Now.Year).ToString();
-            var application = _formService.GetFormNo();
+            var application = _helper.GetFormNo();
             formData.FormNo = Year + application;
 
             if (await _dbContext.SaveChangesAsync() == 1)
             {
                 // if we are able to allocate form number to an applicant
                 // then lets update the form number generator + 1
-                await _formService.UpdateFormNoAsync();
+                await _helper.UpdateFormNo();
             }
         }
         else

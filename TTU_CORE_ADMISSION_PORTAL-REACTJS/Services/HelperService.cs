@@ -1,41 +1,13 @@
-﻿//
-//  Copyright 2021  2021
-//
-//    Licensed under the Apache License, Version 2.0 (the "License");
-//    you may not use this file except in compliance with the License.
-//    You may obtain a copy of the License at
-//
-//        http://www.apache.org/licenses/LICENSE-2.0
-//
-//    Unless required by applicable law or agreed to in writing, software
-//    distributed under the License is distributed on an "AS IS" BASIS,
-//    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-//    See the License for the specific language governing permissions and
-//    limitations under the License.
-using System;
-using System.Diagnostics;
-using System.IO;
+﻿using System.Diagnostics;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Renci.SshNet;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
-using System;
-using Twilio;
-using Twilio.Rest.Api.V2010.Account;
-using System;
-using System.Net;
 using System.Net.Mail;
-using System.Net.Mime;
-using System.Threading;
-using System.ComponentModel;
 using System.Web;
-using System.Net.Http;
-using System.Text;
 using System.Net.Http.Headers;
-using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
-using TTU_CORE_ADMISSION_PORTAL_REACTJS.Services;
+using Microsoft.EntityFrameworkCore;
+using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
@@ -48,38 +20,37 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
         {
             _dbContext = dbContext;
         }
+
         public string GetProgrammeName(int id)
         {
             var programme = _dbContext.ProgrammeModel.Where(p => p.Id == id).First();
 
             return System.Globalization.CultureInfo.CurrentCulture.TextInfo.ToTitleCase(programme.Name);
         }
-        
+
         public string GetApplicantCodeFromId(int id)
         {
             var programme = _dbContext.ProgrammeModel.Where(p => p.Id == id).First();
 
             return programme.Code;
         }
+
         public double GetHallFee(int hall)
         {
-            
             var hallData = _dbContext.HallModel.First(p => p.Id == hall);
 
             return hallData.Fees;
         }
-        
+
         public string GetHallName(int hall)
         {
-            
             var hallData = _dbContext.HallModel.First(p => p.Id == hall);
 
             return hallData.Name;
         }
 
-        
 
-        public int SendFileToServer(string host, int port, string username, string password,string uploadFile)
+        public int SendFileToServer(string host, int port, string username, string password, string uploadFile)
         {
             using (var client = new SftpClient(host, port, username, password))
             {
@@ -90,7 +61,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
                     client.ChangeDirectory("/var/www/html/photos/public/albums/thumbnails");
                     using (var fileStream = new FileStream(uploadFile, FileMode.Open))
                     {
-
                         client.BufferSize = 4 * 1024; // bypass Payload error large files
                         client.UploadFile(fileStream, Path.GetFileName(uploadFile));
                     }
@@ -101,22 +71,19 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
                 {
                     Debug.WriteLine("I couldn't connect");
                     return 0;
-
                 }
             }
         }
 
-         
 
-        void  IHelper.SendEmailNotification(string Email,string Message)
+        void IHelper.SendEmailNotification(string Email, string Message)
         {
-           
             // Command-line argument must be the SMTP host.
             SmtpClient client = new SmtpClient("smtp.google.com");
 
             client.EnableSsl = true;
 
-            NetworkCredential NetworkCred = new NetworkCredential("gadocansey@gmail.com","031988gadocansey");
+            NetworkCredential NetworkCred = new NetworkCredential("gadocansey@gmail.com", "031988gadocansey");
             client.UseDefaultCredentials = true;
             client.Credentials = NetworkCred;
             client.Port = 587;
@@ -124,9 +91,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
             // Create a mailing address that includes a UTF8 character
             // in the display name.
             MailAddress from = new MailAddress("admissions@ttu.edu.gh",
-               "Admissions " + (char)0xD8 + " TTU",
-            System.Text.Encoding.UTF8);
-           
+                "Admissions " + (char)0xD8 + " TTU",
+                System.Text.Encoding.UTF8);
+
             // Set destinations for the email message.
             MailAddress to = new MailAddress(Email);
             // Specify the message content.
@@ -144,65 +111,60 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
 
             // Clean up.
             message.Dispose();
-
         }
 
-        
 
         public string SendSMSNotification(string PhoneNumber, string Message)
         {
+            var _URL = "https://smsc.hubtel.com/v1/messages/send?";
 
-            string _URL = "https://smsc.hubtel.com/v1/messages/send?";
+            var _senderid = "TTU"; // here assigning sender id 
 
-            string _senderid = "TTU";   // here assigning sender id 
-
-            string _user = HttpUtility.UrlEncode("ifrzlixd"); // API user name to send SMS
-            string _pass = "zrydysvw";     // API password to send SMS
-            
+            var _user = HttpUtility.UrlEncode("ifrzlixd"); // API user name to send SMS
+            var _pass = "zrydysvw"; // API password to send SMS
 
 
-            PhoneNumber = "+233"+PhoneNumber.Substring(1, 9);
-
+            PhoneNumber = "+233" + PhoneNumber.Substring(1, 9);
 
 
             PhoneNumber = PhoneNumber.Replace(" ", "").Replace("-", "");
 
 
-            string _recipient = PhoneNumber;  // who will receive message
+            var _recipient = PhoneNumber; // who will receive message
 
-            string _messageText = HttpUtility.UrlEncode(Message); // text message
+            var _messageText = HttpUtility.UrlEncode(Message); // text message
 
-            string result = "";
-              
+            var result = "";
+
             // Creating URL to send sms
-            string _createURL =_URL +
-            "clientid="+_user+
-               "&clientsecret="+_pass+
-               "&from="+_senderid +
-               "&to="+_recipient +
-               "&content="+_messageText;
+            string _createURL = _URL +
+                                "clientid=" + _user +
+                                "&clientsecret=" + _pass +
+                                "&from=" + _senderid +
+                                "&to=" + _recipient +
+                                "&content=" + _messageText;
 
             Console.WriteLine("url" + _createURL);
 
             try
             {
-
                 HttpClient http = new HttpClient();
-                http.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));//ACCEPT header
+                http.DefaultRequestHeaders.Accept.Add(
+                    new MediaTypeWithQualityHeaderValue("application/json")); //ACCEPT header
                 result = http.GetAsync(_createURL).Result.Content.ReadAsStringAsync().Result;
 
                 Console.WriteLine("result is " + result);
                 // creating web request to send sms 
-                 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                Console.WriteLine(e.ToString());//
+                Console.WriteLine(e.ToString()); //
             }
+
             return result;
         }
 
-        bool IHelper. ContainsDuplicates(int[] a)
+        bool IHelper.ContainsDuplicates(int[] a)
         {
             for (int i = 0; i < a.Length; i++)
             {
@@ -211,6 +173,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
                     if (a[i] == a[j]) return true;
                 }
             }
+
             return false;
         }
 
@@ -219,6 +182,90 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
             var applicant = _dbContext.ApplicantModel.Where(p => p.ApplicationNumber.ToString() == id).First();
 
             return applicant.ID.ToString();
+        }
+
+        public int GetAge(DateTime dateOfBirth)
+        {
+            var today = DateTime.Today;
+
+            var a = (today.Year * 100 + today.Month) * 100 + today.Day;
+            var b = (dateOfBirth.Year * 100 + dateOfBirth.Month) * 100 + dateOfBirth.Day;
+
+            return (a - b) / 10000;
+        }
+
+        public bool QualifiesMature(int age)
+        {
+            return (age >= 25);
+        }
+
+        public int checkPassed(IEnumerable<int> GradeValues)
+        {
+            return GradeValues.Count(values => values <= 7);
+        }
+
+        public int checkFailed(IEnumerable<int> GradeValues)
+        {
+            return GradeValues.Count(values => values > 7);
+        }
+
+        public string[] GradesIssues(int[] Cores, int[] CoreAlt, int[] Electives)
+        {
+            var error = new string[4];
+            if (Cores.Length + CoreAlt.Length + Electives.Length != 6)
+            {
+                const string msg = "Results not completed.";
+                Array.Fill(error, msg);
+            }
+            else if (Cores.Length < 2)
+            {
+                const string msg = "Minimum of two(2) core subjects not met.";
+                Array.Fill(error, msg);
+            }
+            else if (Electives.Length < 3)
+            {
+                const string msg = "Minimum of three(3) elective subjects not met.";
+                Array.Fill(error, msg);
+            }
+            else if (!CoreAlt.Any())
+            {
+                const string msg = "Social or Science required.";
+                Array.Fill(error, msg);
+            }
+            else
+            {
+                string msg = null;
+                Array.Fill(error, msg);
+            }
+
+            return error;
+        }
+        public int GetTotalAggregate(int[] Cores, int[] CoreAlt, int[] Electives)
+        {
+            Array.Sort(CoreAlt);
+            Array.Sort(Cores);
+            Array.Sort(Electives);
+            var cstartIndex = 0;
+            var clenght = 1;
+            var sliceCoreAlt = CoreAlt.Skip(cstartIndex).Take(clenght);
+            var EstartIndex = 0;
+            var Elenght = 3;
+            var sliceElect = Electives.Skip(EstartIndex).Take(Elenght);
+            var grade = Cores.Sum() + sliceElect.Sum() + sliceCoreAlt.Sum();
+            return grade;
+        }
+        public string GetFormNo()
+        {
+            var configuration = _dbContext.ConfigurationModel.OrderByDescending(b=>b.Id).FirstOrDefault();
+            var formNumber = _dbContext.FormNoModel.First(n => n.Year == configuration.Year);
+            return formNumber.No.ToString();
+        }
+        public async Task<int> UpdateFormNo()
+        {
+            var configuration = _dbContext.ConfigurationModel.OrderByDescending(b=>b.Id).FirstOrDefault();
+            var update = _dbContext.FormNoModel.First(n => n.Year == configuration.Year);
+            update.No += 1;
+            return await _dbContext.SaveChangesAsync();
         }
     }
 }

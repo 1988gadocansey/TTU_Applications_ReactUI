@@ -47,11 +47,11 @@ builder.Services.AddAuthentication()
     .AddIdentityServerJwt();
 
 builder.Services.AddControllersWithViews();
-builder.Services.Configure<ForwardedHeadersOptions>(options =>
+/*builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
     options.ForwardedHeaders =
         ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
-});
+});*/
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IHelper, HelperService>();
 var app = builder.Build();

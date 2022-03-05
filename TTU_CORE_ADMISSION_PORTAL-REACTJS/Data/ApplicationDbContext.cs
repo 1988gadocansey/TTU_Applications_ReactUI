@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Duende.IdentityServer.EntityFramework.Options;
@@ -108,5 +108,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
                 }
             }
         }
+
+        public DbSet<TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ConfigurationModel> ConfigurationModel { get; set; }
 
 }

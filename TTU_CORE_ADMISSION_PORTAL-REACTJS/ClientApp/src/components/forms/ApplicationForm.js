@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, {useEffect, useState} from 'react'
 import {
     Button,
     Form,
@@ -13,13 +13,16 @@ import {
 } from 'antd'
 import FormSide from './form-side'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {   useParams } from 'react-router'
 import { useHistory } from "react-router-dom";
 import BiodataContainer from "../../containers/BiodataContainer";
 import SecondStep from "./SecondStep";
 import ThirdStep from "./ThirdStep";
 import {updateForm} from "../../actions/forms/FormsAction";
+import {getFormData} from "../../actions/user/UsersAction";
+import {getProgrammes} from "../../actions/programmes/ProgrammeActions";
+import AcademicContainer from "../../containers/AcademicContainer";
 const {Step} = Steps;
 
 const steps = [
@@ -30,22 +33,25 @@ const steps = [
     },
     {
         title: 'Academic',
-        content: <SecondStep/>,
+        content: <AcademicContainer/>,
         // icon:<AcUnit />
-    },
-    {
+    }
+   /* {
         title: 'Results',
         content: <ThirdStep/>
-    },
+    },*/
 ];
 export default function ApplicationForm (props) {
     const [loading, setLoading] = useState(false)
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
+   
     const [current, setCurrent] = useState(0)
     const [form] = Form.useForm()
     const next = () => {
+        
+        //console.log("programmes"+JSON.stringify(programmes))
         form.setFields([
             {
                 name: 'completed',

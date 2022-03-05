@@ -1,10 +1,10 @@
 import { Types } from './Types'
 import API from "../../utils/api";
-export const  getProgrammes = (dispatch) => async () => {
-    await API.get('/api/selectbox/programmes')
+export const  getSHSprogrammes = (dispatch) => async () => {
+    await API.get('/api/selectbox/shsprogrammes')
         .then((res) => {
             dispatch({
-                type: Types.GET_PROGRAMME,
+                type: Types.GET_SHSPROGRAMME,
                 payload: res.data
             })
 
@@ -14,7 +14,4 @@ export const  getProgrammes = (dispatch) => async () => {
     
 
 }
-
-
- 
  

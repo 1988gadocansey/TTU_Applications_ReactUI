@@ -1,0 +1,5 @@
+export const Types = {
+    GET_DENOMINATION: 'GET_DENOMINATION',
+    SET_DENOMINATION: 'SET_DENOMINATION',
+   
+}
