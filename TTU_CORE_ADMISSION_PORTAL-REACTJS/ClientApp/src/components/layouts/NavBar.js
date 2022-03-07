@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Layout, Menu, Breadcrumb, Row} from 'antd';
 import {
-    FileOutlined,
+    FileOutlined, HomeOutlined,
 } from '@ant-design/icons';
 import {isMobile} from 'react-device-detect'
 import Avatar from 'antd/es/avatar/avatar'
@@ -55,17 +55,18 @@ const NavBar = () => {
                 <Row justify="space-around" align="middle">
                     <center><img src={logo} alt="Logo"
                                  style={{width: '100px', display: 'inline'}} className="img-responsive"/>
-                        <h6 class='titles'> TTU | Admissions</h6>
+                        <h6 className='titles'> TTU | Admissions</h6>
 
                     </center>
                 </Row>
 
             </div>
             <Menu className={'sideBarNav'} theme="dark" defaultSelectedKeys={['1']} mode="inline">
-                <p></p>
+                {/*<p></p>*/}
 
 
-                <Menu.Item key="1" icon={<FileOutlined/>}>
+                <Menu.Item key="1" icon={<HomeOutlined/>}>
+                    
                     <Link to={'/Home'}>
                         Home
                     </Link>
@@ -86,6 +87,11 @@ const NavBar = () => {
                     </Link>
                 </Menu.Item>
                 <Menu.Item key="4" icon={<FileOutlined/>}>
+                    <Link to={'/Result/Upload'}>
+                        Upload Result
+                    </Link>
+                </Menu.Item>
+                <Menu.Item key="5" icon={<FileOutlined/>}>
                     <Link to={'/Preview'}>
                         Preview
                     </Link>

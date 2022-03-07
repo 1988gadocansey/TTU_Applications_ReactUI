@@ -108,11 +108,9 @@ export default function SecondStep(props) {
                 initialValue={props.bioData.EntryMode}
                 name="EntryMode" label="Entry Mode" rules={[{ required: true, message: 'Required' }]}>
                 <Select disabled={props.bioData.completed === 1} placeholder="Select Mode of study" allowClear>
-                     <Select.Option value="Social Media">Social Media </Select.Option>
-                     <Select.Option value="Print Media">Print Media </Select.Option>
-                     <Select.Option value="TTU Outreach team">TTU Outreach team </Select.Option>
-                     <Select.Option value="Friends">Friends </Select.Option>
-
+                     <Select.Option selected={true} value="Regular">Regular </Select.Option>
+                     <Select.Option value="Distance">Distance </Select.Option>
+                    
 
                 </Select>
             </Form.Item>

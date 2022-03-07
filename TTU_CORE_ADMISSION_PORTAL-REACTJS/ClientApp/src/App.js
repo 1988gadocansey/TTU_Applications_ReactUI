@@ -20,7 +20,7 @@ class App extends Component {
                     <AuthorizeRoute path="/Home" exact={true} component={Home}/>
                     <AuthorizeRoute path="/PictureUpload" component={PictureUpload}/>
                     <AuthorizeRoute path="/Form" component={FormContainer}/>
-                    <AuthorizeRoute path="/ResultUpload" component={ResultUpload}/>
+                    <AuthorizeRoute path="/Result/Upload" component={ResultUpload}/>
                     <AuthorizeRoute path='/fetch-data' component={FetchData}/>
                     <AuthorizeRoute path='/Preview' component={PrintPreview}/>
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes}/>

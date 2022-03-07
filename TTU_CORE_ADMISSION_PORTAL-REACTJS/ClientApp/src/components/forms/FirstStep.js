@@ -81,13 +81,7 @@ export default function FirstStep(props) {
             <Form.Item
                 initialValue={props.bioData.otherNames}
                 name={'OtherNames'}
-                label="Other Names"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Required',
-                    }
-                ]}>
+                label="Other Names">
                 <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
         </Col>
@@ -165,7 +159,7 @@ export default function FirstStep(props) {
                 <Select disabled={props.bioData.completed === 1} placeholder="Select Referral" allowClear>
                     <Select.Option value="Social Media">Social Media  </Select.Option>
                     <Select.Option value="Print Media">Print Media </Select.Option>
-                    <Select.Option value="TTU Outreach team">TTU Outreach team </Select.Option>
+                    <Select.Option value="Outreach">Outreach team </Select.Option>
                     <Select.Option value="Friends">Friends </Select.Option>
 
 

@@ -10,6 +10,8 @@ import denominationReducer from "./DenominationReducer";
 import schoolReducer from "./SchoolReducer";
 import shsprogrammerReducer from "./SHSProgrammeReducer";
 import yearReducer from "./YearReducer";
+import subjectReducer from "./SubjectReducer";
+import gradeReducer from "./GradeReducer";
 const reducers = combineReducers({
 
     people: userReducer,
@@ -22,7 +24,9 @@ const reducers = combineReducers({
     denomination:denominationReducer,
     school:schoolReducer,
     shsprogramme:shsprogrammerReducer,
-    year:yearReducer
+    year:yearReducer,
+    subject:subjectReducer,
+    wasscegrades:gradeReducer
     
 })
 

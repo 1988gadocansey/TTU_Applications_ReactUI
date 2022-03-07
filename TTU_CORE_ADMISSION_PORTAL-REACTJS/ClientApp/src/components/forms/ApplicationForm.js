@@ -129,7 +129,7 @@ export default function ApplicationForm (props) {
 
     function completeForm () {
         setLoading(true)
-        submit(form.getFieldsValue()).then(r => history.push('/nominees'))
+        submit(form.getFieldsValue()).then(r => history.push('/applicants'))
         // history.push('/nominees')
     }
 
