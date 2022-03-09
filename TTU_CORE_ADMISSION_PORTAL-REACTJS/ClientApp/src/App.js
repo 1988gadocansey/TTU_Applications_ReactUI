@@ -11,6 +11,7 @@ import {ApplicationPaths} from './components/api-authorization/ApiAuthorizationC
 import {FetchData} from "./components/FetchData";
 import {Component} from "react";
 import FormContainer from "./containers/FormContainer";
+import PrintPreviewContainer from "./containers/PrintPreviewContainer";
 class App extends Component {
     render() {
         return (
@@ -22,7 +23,7 @@ class App extends Component {
                     <AuthorizeRoute path="/Form" component={FormContainer}/>
                     <AuthorizeRoute path="/Result/Upload" component={ResultUpload}/>
                     <AuthorizeRoute path='/fetch-data' component={FetchData}/>
-                    <AuthorizeRoute path='/Preview' component={PrintPreview}/>
+                    <AuthorizeRoute path='/Preview' component={PrintPreviewContainer}/>
                     <Route path={ApplicationPaths.ApiAuthorizationPrefix} component={ApiAuthorizationRoutes}/>
                 </Index>
             </div>

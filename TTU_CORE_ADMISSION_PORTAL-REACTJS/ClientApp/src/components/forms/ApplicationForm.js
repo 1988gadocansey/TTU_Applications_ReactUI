@@ -100,7 +100,8 @@ export default function ApplicationForm (props) {
 
     const saveData = (values) => {
         setLoading(true)
-        submit(values)
+        submit(form.getFieldsValue()).then(() =>console.log(form.getFieldsValue()))
+        alert("finish");
         moveToNext()
     }
 

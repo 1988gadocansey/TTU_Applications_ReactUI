@@ -10,6 +10,7 @@
     "antd-img-crop": "^4.1.0",
     "axios": "^0.25.0",
     "bootstrap": "^5.1.0",
+    "html-react-parser": "^1.4.8",
     "http-proxy-middleware": "^0.19.1",
     "jquery": "^3.5.1",
     "merge": "^2.1.1",
@@ -81,5 +82,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "resolutions": {
+    "//": "See https://github.com/facebook/create-react-app/issues/11773",
+    "react-error-overlay": "6.0.9"
   }
 }

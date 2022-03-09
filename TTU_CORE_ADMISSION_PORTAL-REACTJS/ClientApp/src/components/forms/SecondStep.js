@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Row, Col, Form, Select, Input} from 'antd'
+import {Row, Col, Form, Select, Input, Button, message} from 'antd'
 import PropTypes from 'prop-types'
 import {useDispatch, useSelector} from "react-redux";
 import { useParams} from "react-router";
@@ -9,6 +9,7 @@ import {getProgrammes} from "../../actions/programmes/ProgrammeActions";
 import {getSchool} from "../../actions/schools/SchoolActions";
 import {getSHSprogrammes} from "../../actions/shsprogrammes/ShsProgrammeActions";
 import {getYears} from "../../actions/years/YearActions";
+import {PlusOutlined} from "@ant-design/icons";
  
 
 export default function SecondStep(props) {
@@ -47,7 +48,31 @@ export default function SecondStep(props) {
             )
         );
     };
-
+    const submit = async (values) => {
+        if (props.bioData.completed === 0) {
+            values.id = id
+            let newValue = {}
+            if (values.dateOfBirth) {
+                newValue = { ...values, dateOfBirth: values.dateOfBirth.format('YYYY-MM-DD') }
+            } else {
+                newValue = { ...values }
+            }
+            await dispatch(updateForm(newValue)).then((res) => {
+                message.success('Data Saved')
+                setLoading(false)
+            }).catch((e) => {
+                console.log(e)
+                message.warning('Could not save data! Make sure required fields have value')
+            })
+        }
+        setLoading(false)
+    }
+    const saveData = (values) => {
+        setLoading(true);
+        alert("hi");
+         
+       // moveToNext()
+    }
     const [current, setCurrent] = useState(0)
     return <Row gutter={5}>
         <Col span={8} xs={24} sm={8} md={12}>
@@ -194,7 +219,14 @@ export default function SecondStep(props) {
                 <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
         </Col>
-         
+        <p></p>
+        <Col span={8} xs={24} sm={8} md={4}>
+        <Form.Item>
+            <Button onClick={()=>saveData()} type="primary" htmlType="submit">
+                Save
+            </Button>
+        </Form.Item>
+        </Col>
     </Row>
 }
 

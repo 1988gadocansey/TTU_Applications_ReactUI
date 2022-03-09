@@ -154,7 +154,7 @@ public class ApplicationFormController : ControllerBase
         return Ok();
     }
 
-    [Route("/finalize")]
+      [HttpGet("finalize")]
     public async Task<IActionResult> FinanlizedAsync()
     {
         _logger.LogInformation("User finalized forms.");
@@ -194,4 +194,7 @@ public class ApplicationFormController : ControllerBase
 
         // return RedirectToAction("Index", "Home");
     }
+
+  
+     
 }

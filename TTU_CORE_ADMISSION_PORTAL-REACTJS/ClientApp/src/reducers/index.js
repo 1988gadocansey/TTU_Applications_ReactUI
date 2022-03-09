@@ -12,6 +12,7 @@ import shsprogrammerReducer from "./SHSProgrammeReducer";
 import yearReducer from "./YearReducer";
 import subjectReducer from "./SubjectReducer";
 import gradeReducer from "./GradeReducer";
+import applicantReducer from "./ApplicantReducer";
 const reducers = combineReducers({
 
     people: userReducer,
@@ -26,7 +27,8 @@ const reducers = combineReducers({
     shsprogramme:shsprogrammerReducer,
     year:yearReducer,
     subject:subjectReducer,
-    wasscegrades:gradeReducer
+    wasscegrades:gradeReducer,
+    applicant:applicantReducer
     
 })
 

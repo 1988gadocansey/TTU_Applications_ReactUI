@@ -90,6 +90,7 @@ const ResultUpload = () => {
                                                         <Form.Item
                                                             name={'Center'}
                                                             label="Center"
+                                                            id="Center"
                                                             rules={[
                                                                 {
                                                                     required: true,
@@ -102,7 +103,7 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={8}>
                                                         <Form.Item
-                                                            name="ExamType" id="one2" label="Exam Type"
+                                                            name="ExamType" id="ExamType" label="Exam Type"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="exams" allowClear>
                                                                 <Select.Option selected={true}
@@ -142,7 +143,8 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={8}>
                                                         <Form.Item
-                                                            name="Subject" id="one" label="Subjects"
+                                                            
+                                                            name="Subject" id="Subject" label="Subjects"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="subject types" allowClear>
                                                                 {subjectOptions}
@@ -151,7 +153,7 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={4}>
                                                         <Form.Item
-                                                            name="Grade" id="one" label="Grades"
+                                                            name="Grade" id="Grades" label="Grades"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="grades" allowClear>
                                                                 {gradeOptions}
@@ -160,7 +162,7 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={4}>
                                                         <Form.Item
-                                                            name="Sitting" id="one" label="Sitting"
+                                                            name="Sitting" id="Sitting" label="Sitting"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="sitting" allowClear>
                                                                 <option value="1">Ist</option>
@@ -172,7 +174,7 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={6}>
                                                         <Form.Item
-                                                            name="Month" id="one" label="Month of Exam"
+                                                            name="Month" id="Month" label="Month of Exam"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="months" allowClear>
                                                                 <option value="May/June">May/June</option>
@@ -188,7 +190,7 @@ const ResultUpload = () => {
                                                     </Col>
                                                     <Col span={8} xs={24} sm={8} md={8}>
                                                         <Form.Item
-                                                            name="Year" id="one" label="Year of Exam"
+                                                            name="Year" id="Year" label="Year of Exam"
                                                             rules={[{required: true, message: 'Required'}]}>
                                                             <Select placeholder="year of exams" allowClear>
                                                                 {years()}
