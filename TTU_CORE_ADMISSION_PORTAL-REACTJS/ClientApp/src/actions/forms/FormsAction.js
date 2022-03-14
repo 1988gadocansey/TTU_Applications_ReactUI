@@ -4,13 +4,14 @@ import API from "../../utils/api";
 
 export const addForm = (values) => (dispatch) => {
     return new Promise((resolve, reject) => {
-        API().post('/forms', values).then((res) => {
+        API().post('/applicationform/SaveForm', values).then((res) => {
             dispatch({
                 type: Types.NEW_FORM,
                 payload: res.data
             })
             resolve()
         }).catch((err) => {
+            console.log(err.toString())
             reject(err)
         })
     })
@@ -18,7 +19,7 @@ export const addForm = (values) => (dispatch) => {
 // fetch details of user form
 export const setFormData = (values) => (dispatch) => {
     return new Promise((resolve, reject) => {
-        API.put(`/forms/${values.id}`, values).then((res) => {
+        API.put(`/SaveForm`, values).then((res) => {
             dispatch({
                 type: Types.SET_FORM_DATA,
                 payload: res.data

@@ -219,14 +219,8 @@ export default function SecondStep(props) {
                 <Input disabled={props.bioData.completed === 1}/>
             </Form.Item>
         </Col>
-        <p></p>
-        <Col span={8} xs={24} sm={8} md={4}>
-        <Form.Item>
-            <Button onClick={()=>saveData()} type="primary" htmlType="submit">
-                Save
-            </Button>
-        </Form.Item>
-        </Col>
+         
+       
     </Row>
 }
 

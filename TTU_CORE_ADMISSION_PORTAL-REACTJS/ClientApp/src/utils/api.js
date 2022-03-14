@@ -51,6 +51,7 @@ API.interceptors.request.use(
       if (token) {
        //config.headers.Authorization = `Bearer ${token}`;
           config.headers=!token ? {} : {'Authorization': `Bearer ${token}`};
+          
       } else {
         delete API.defaults.headers.common.Authorization;
       }

@@ -153,8 +153,24 @@ public class ApplicationFormController : ControllerBase
 
         return Ok();
     }
+    [HttpPost("SaveForm")]
+    [ValidateAntiForgeryToken]
+    /*[FromQuery] - Gets values from the query string.
+    [FromRoute] - Gets values from route data.
+    [FromForm] - Gets values from posted form fields.
+    [FromBody] - Gets values from the request body.
+    [FromHeader] - Gets values from HTTP headers.*/
+    public async Task<IActionResult> SaveForm([FromForm] ApplicantModel applicant)
+    {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+        var formData = _dbContext.Users.FirstOrDefault(a => a.Id == userId);
+        var ApplicantForm = formData?.FormNo;
+        var userFormType = formData?.Type;
+        
+        return Ok(200);
+    }
 
-      [HttpGet("finalize")]
+    [HttpGet("finalize")]
     public async Task<IActionResult> FinanlizedAsync()
     {
         _logger.LogInformation("User finalized forms.");
@@ -194,6 +210,7 @@ public class ApplicationFormController : ControllerBase
 
         // return RedirectToAction("Index", "Home");
     }
+    
 
   
      

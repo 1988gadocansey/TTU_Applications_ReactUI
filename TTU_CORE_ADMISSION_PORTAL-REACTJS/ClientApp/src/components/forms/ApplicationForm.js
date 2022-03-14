@@ -1,56 +1,42 @@
-import React, {useEffect, useState} from 'react'
-import {
-    Button,
-    Form,
-    Card,
-    Col,
-    Row,
-    Spin,
-    Popconfirm,
-    Input,
-    Space,
-    Tag, message, Steps
-} from 'antd'
-import FormSide from './form-side'
-import PropTypes from 'prop-types'
-import {useDispatch, useSelector} from 'react-redux'
-import {   useParams } from 'react-router'
-import { useHistory } from "react-router-dom";
+import {Steps, Button, message, Divider, Row, Form, Col, Space, Tag, Input, Popconfirm} from 'antd';
 import BiodataContainer from "../../containers/BiodataContainer";
-import SecondStep from "./SecondStep";
-import ThirdStep from "./ThirdStep";
-import {updateForm} from "../../actions/forms/FormsAction";
-import {getFormData} from "../../actions/user/UsersAction";
-import {getProgrammes} from "../../actions/programmes/ProgrammeActions";
+import React, {useState} from "react";
 import AcademicContainer from "../../containers/AcademicContainer";
+import PropTypes from "prop-types";
+import {useMediaQuery} from "react-responsive";
+import {useDispatch} from "react-redux";
+import {useHistory} from "react-router-dom";
+import {useParams} from "react-router";
+import {addForm, updateForm} from "../../actions/forms/FormsAction";
+import FormSide from "./form-side";
+
 const {Step} = Steps;
 
 const steps = [
     {
         title: 'Biodata',
-        content: <BiodataContainer />,
+        content: <BiodataContainer/>,
 
     },
     {
         title: 'Academic',
         content: <AcademicContainer/>,
-        // icon:<AcUnit />
-    }
-   /* {
-        title: 'Results',
-        content: <ThirdStep/>
-    },*/
+    },
+
+
 ];
-export default function ApplicationForm (props) {
-    const [loading, setLoading] = useState(false)
+
+export default function ApplicationForm(props) {
+
+    const [current, setCurrent] = React.useState(0);
     const dispatch = useDispatch()
     const history = useHistory()
     const { id } = useParams()
-   
-    const [current, setCurrent] = useState(0)
+    const [loading, setLoading] = useState(false)
+
     const [form] = Form.useForm()
     const next = () => {
-        
+
         //console.log("programmes"+JSON.stringify(programmes))
         form.setFields([
             {
@@ -72,26 +58,6 @@ export default function ApplicationForm (props) {
         submit(form.getFieldsValue())
         setCurrent(current - 1)
     }
-    const submit = async (values) => {
-        if (props.bioData.completed === 0) {
-            values.id = id
-            let newValue = {}
-            if (values.dateOfBirth) {
-                newValue = { ...values, dateOfBirth: values.dateOfBirth.format('YYYY-MM-DD') }
-            } else {
-                newValue = { ...values }
-            }
-            await dispatch(updateForm(newValue)).then((res) => {
-                message.success('Data Saved')
-                setLoading(false)
-            }).catch((e) => {
-                console.log(e)
-                message.warning('Could not save data! Make sure required fields have value')
-            })
-        }
-        setLoading(false)
-    }
-
     const moveToNext = () => {
         if (loading === false) {
             if (current !== steps.length - 1) { next() }
@@ -102,20 +68,8 @@ export default function ApplicationForm (props) {
         setLoading(true)
         submit(form.getFieldsValue()).then(() =>console.log(form.getFieldsValue()))
         alert("finish");
-        moveToNext()
+        //moveToNext()
     }
-
-    const continueLater = () => {
-        setLoading(true)
-        form.setFields([
-            {
-                name: 'completed',
-                value: 0
-            }
-        ])
-        submit(form.getFieldsValue()).then(r => history.push('/nominees'))
-    }
-
     const onChange = (current) => {
         setLoading(true)
         form.setFields([
@@ -127,51 +81,70 @@ export default function ApplicationForm (props) {
         submit(form.getFieldsValue())
         setCurrent(current)
     }
-
+    const submit = async (values) => {
+        
+            values.id = id
+            let newValue = {}
+            if (values.dateOfBirth) {
+                newValue = { ...values, dateOfBirth: values.dateOfBirth.format('YYYY-MM-DD') }
+            } else {
+                newValue = { ...values }
+            }
+            await dispatch(addForm(newValue)).then((res) => {
+                message.success('Data Saved')
+                setLoading(false)
+            }).catch((e) => {
+                console.log(e)
+                message.warning('Could not save data! Make sure required fields have value')
+            })
+       
+        setLoading(false)
+    }
     function completeForm () {
         setLoading(true)
-        submit(form.getFieldsValue()).then(r => history.push('/applicants'))
+        submit(form.getFieldsValue()).then(r => history.push('/nominees'))
         // history.push('/nominees')
     }
-
     return (
-        <div className="ant-card">
-            <div className="ant-card-body">
-                <mark>Fields marked in red asteriks(*) are required.</mark>
-        <Row gutter={5} justify={'center'} align={'center'}>
-            <Col span={4} lg={4} md={4} sm={24} xs={24}>
-                <FormSide
-                    onChange={onChange}
-                    steps={steps}
-                    current={current}
-                    portfolio={props.bioData.name}
-                    imageUrl={props.bioData.file}
-                    indexNumber={props.bioData.indexNumber}
-                    completed={props.bioData.completed}
-                />
-            </Col>
-            <Col span={16} lg={16} md={16} sm={24} xs={24}>
-                {
-                    props.bioData.completed === 1 &&
-                    <Space>
-                        <Tag color="red"> Form is completed! Print Now</Tag>
-                        {/*<Index bioData={props.bioData} iconSize={20}/>*/}
-                        <p>Preview and print</p>
-                    </Space>
-                }
-                <Spin spinning={loading} tip={'Saving Data'}>
+        <>
+
+            <Steps current={current}>
+                {steps.map(item => (
+                    <Step key={item.title} title={item.title} />
+                ))}
+            </Steps>
+            <p></p>
+            <div className="ant-card">
+                <div className="ant-card-body">
+                    {
+                        props.bioData.completed === 1 &&
+                        <Space>
+                            <Tag color="red"> Form is completed! Print Now</Tag>
+                            {/*<Index bioData={props.bioData} iconSize={20}/>*/}
+                            <p>Preview and print</p>
+                        </Space>
+                    }
                     <Form form={form} layout="horizontal" initialValues={{ }} onFinish={saveData}>
-                        <Card bordered={false} title={steps[current].title}>
-                            <div className="steps-contents" >
-                                {steps[current].content}
-                            </div>
-                            <Row gutter={[3, 3]} className="steps-action">
+
+                        <mark>Fields marked in red asteriks(*) are required.</mark>
+                        <Row gutter={5} justify={'center'}>
+                            
+                            <div className="steps-content">{steps[current].content}</div>
+                            <div className="steps-action">
                                 {current < steps.length - 1 && (
-                                    <Col span={8} xs={24} md={4} sm={4} lg={3}>
-                                        <Button htmlType={'submit'} type="primary" >
-                                            Next
-                                        </Button>
-                                    </Col>
+                                    <Button  type="primary"  onClick={()=>next()}htmlType={'submit'}>
+                                        Next
+                                    </Button>
+                                )}
+                                {current === steps.length - 1 && (
+                                    <Button htmlType={'submit'} type="primary"   onClick={()=>saveData()}>
+                                        Done
+                                    </Button>
+                                )}
+                                {current > 0 && (
+                                    <Button style={{margin: '0 8px'}} onClick={() => prev()}>
+                                        Previous
+                                    </Button>
                                 )}
                                 {
                                     props.bioData.completed === 0 &&
@@ -196,31 +169,15 @@ export default function ApplicationForm (props) {
                                         )}
                                     </>
                                 }
-                                {current > 0 && (
-                                    <Col span={3} xs={24} md={3} sm={3} lg={3}>
-                                        <Button onClick={() => prev()}>
-                                            Previous
-                                        </Button>
-                                    </Col>
-                                )}
-                                {
-                                    props.bioData.completed === 0 &&
-                                    <Col span={3} xs={24} md={3} sm={3} lg={3}>
-                                        <Button type={'dashed'} onClick={() => continueLater()}>
-                                            Continue Later
-                                        </Button>
-                                    </Col>
-                                }
-                            </Row>
-                        </Card>
+
+                            </div>
+                        </Row>
                     </Form>
-                </Spin>
-            </Col>
-        </Row>
+                </div>
             </div>
-        </div>
-    )
-}
+        </>
+    );
+};
 ApplicationForm.propTypes = {
 
     bioData: PropTypes.object.isRequired,
