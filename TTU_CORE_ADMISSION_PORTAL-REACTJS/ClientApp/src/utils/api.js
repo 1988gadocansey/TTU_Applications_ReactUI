@@ -50,10 +50,14 @@ API.interceptors.request.use(
       console.log("token",token)
       if (token) {
        //config.headers.Authorization = `Bearer ${token}`;
+          //config.headers=!token ? {} : {'Authorization': `Bearer ${token}`};
           config.headers=!token ? {} : {'Authorization': `Bearer ${token}`};
-          
+          //config.headers['Authorization'] = `Bearer ${token}` // new header new token
+        
       } else {
-        delete API.defaults.headers.common.Authorization;
+        //delete API.defaults.headers.common.Authorization;
+          window.location.href = `${ApplicationPaths.Login}?${QueryParameterNames.ReturnUrl}=${encodeURI(window.location.href)}`;
+
       }
        
       return config;

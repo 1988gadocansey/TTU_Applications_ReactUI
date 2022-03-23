@@ -13,7 +13,7 @@ using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers;
 
-[EnableCors("AdmissionCORS")]
+//[EnableCors("AdmissionCORS")]
 [Authorize]
 [ApiController]
 [Route("[controller]")]
@@ -60,14 +60,13 @@ public class ApplicationFormController : ControllerBase
         }
         else
         {
-            
-            return Ok(new {
-                formNo=applicationNo,
-                pictureUploaded=formData.PictureUploaded,
-                formCompleted=formData.FormCompleted,
-                admisionStatus=formData.Admitted
-                
-            }
+            return Ok(new
+                {
+                    formNo = applicationNo,
+                    pictureUploaded = formData.PictureUploaded,
+                    formCompleted = formData.FormCompleted,
+                    admisionStatus = formData.Admitted
+                }
             );
         }
 
@@ -138,10 +137,10 @@ public class ApplicationFormController : ControllerBase
 
             return Ok(new
             {
-                formNo=applicationNo,
-                pictureUploaded=formData.PictureUploaded,
-                formCompleted=formData.FormCompleted,
-                admisionStatus=formData.Admitted,
+                formNo = applicationNo,
+                pictureUploaded = formData.PictureUploaded,
+                formCompleted = formData.FormCompleted,
+                admisionStatus = formData.Admitted,
                 fees = FeesPaids, type = applicantData.AdmissionType, hall = hallname,
                 feedata = responseClientFeeComponents.Content,
                 hallfee = hallfees,
@@ -153,6 +152,7 @@ public class ApplicationFormController : ControllerBase
 
         return Ok();
     }
+
     [HttpPost("SaveForm")]
     [ValidateAntiForgeryToken]
     /*[FromQuery] - Gets values from the query string.
@@ -162,11 +162,21 @@ public class ApplicationFormController : ControllerBase
     [FromHeader] - Gets values from HTTP headers.*/
     public async Task<IActionResult> SaveForm([FromForm] ApplicantModel applicant)
     {
+        Console.Write("hello from form controller");
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var formData = _dbContext.Users.FirstOrDefault(a => a.Id == userId);
         var ApplicantForm = formData?.FormNo;
         var userFormType = formData?.Type;
-        
+
+
+        var form = new ApplicantModel
+        {
+            ApplicationNumber = Convert.ToInt32(ApplicantForm),
+            LastName = applicant.LastName,
+            FirstName = applicant.FirstName
+        };
+        _dbContext.Add(form);
+        await _dbContext.SaveChangesAsync();
         return Ok(200);
     }
 
@@ -210,8 +220,4 @@ public class ApplicationFormController : ControllerBase
 
         // return RedirectToAction("Index", "Home");
     }
-    
-
-  
-     
 }

@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,8 +9,10 @@ using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
 {
+    [EnableCors("AdmissionCORS")]
     [Route("api/[controller]")]
     [ApiController]
+    
     public class SelectBoxController : ControllerBase
     {
         private readonly ApplicationDbContext _dbContext;

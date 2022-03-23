@@ -132,7 +132,7 @@ export default function ApplicationForm(props) {
                             <div className="steps-content">{steps[current].content}</div>
                             <div className="steps-action">
                                 {current < steps.length - 1 && (
-                                    <Button  type="primary"  onClick={()=>next()}htmlType={'submit'}>
+                                    <Button  type="primary"  onClick={()=>next()}htmlType={'button'}>
                                         Next
                                     </Button>
                                 )}
