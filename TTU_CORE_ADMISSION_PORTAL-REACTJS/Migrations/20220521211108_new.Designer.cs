@@ -12,8 +12,8 @@ using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220207162605_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220521211108_new")]
+    partial class @new
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -349,6 +349,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("To")
                         .HasColumnType("timestamp with time zone");
 
@@ -358,6 +361,8 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("AcademicExperieceModel");
                 });
@@ -395,12 +400,17 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Property<bool>("Results")
                         .HasColumnType("boolean");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("ApplicantIssueModel");
                 });
@@ -418,17 +428,15 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("AdmissionType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("Admitted")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("AdmittedBy")
+                    b.Property<int?>("AdmittedBy")
                         .HasColumnType("integer");
 
                     b.Property<string>("Age")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("AltPhone")
@@ -439,7 +447,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("ApplicationUserId")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("Awaiting")
@@ -448,7 +455,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<DateTime>("DateAdmitted")
+                    b.Property<DateTime?>("DateAdmitted")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<DateTime>("DateOfBirth")
@@ -461,7 +468,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("DisabilityType")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("DistrictId")
@@ -483,7 +489,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("ExternalHostel")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("FeePaying")
@@ -492,7 +497,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Property<decimal?>("FeesPaid")
                         .HasColumnType("numeric");
 
-                    b.Property<int>("FirstChoiceId")
+                    b.Property<int?>("FirstChoiceId")
                         .HasColumnType("integer");
 
                     b.Property<string>("FirstName")
@@ -512,10 +517,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("integer");
 
                     b.Property<string>("Gender")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("Grade")
+                    b.Property<int?>("Grade")
                         .HasColumnType("integer");
 
                     b.Property<string>("GuardianName")
@@ -552,14 +556,13 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
 
-                    b.Property<int>("LastYearInSchool")
+                    b.Property<int?>("LastYearInSchool")
                         .HasColumnType("integer");
 
                     b.Property<bool?>("LetterPrinted")
                         .HasColumnType("boolean");
 
                     b.Property<string>("MaritalStatus")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("MiddleName")
@@ -586,7 +589,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("PreferedHall")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("PreviousName")
@@ -601,16 +603,15 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Referrals")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<int?>("RegionId")
                         .HasColumnType("integer");
 
-                    b.Property<int>("ReligionId")
+                    b.Property<int?>("ReligionId")
                         .HasColumnType("integer");
 
-                    b.Property<bool>("Reported")
+                    b.Property<bool?>("Reported")
                         .HasColumnType("boolean");
 
                     b.Property<bool?>("ReportedInSchool")
@@ -620,17 +621,15 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("boolean");
 
                     b.Property<string>("Results")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("RoomNo")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("SMSSent")
                         .HasColumnType("boolean");
 
-                    b.Property<int>("SecondChoiceId")
+                    b.Property<int?>("SecondChoiceId")
                         .HasColumnType("integer");
 
                     b.Property<string>("SecondQualification")
@@ -638,33 +637,27 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("SectionAdmitted")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SourceOfFinance")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<bool?>("SponsorShip")
                         .HasColumnType("boolean");
 
                     b.Property<string>("SponsorShipCompany")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SponsorShipCompanyContact")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("SponsorShipLocation")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Status")
-                        .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("ThirdChoiceId")
+                    b.Property<int?>("ThirdChoiceId")
                         .HasColumnType("integer");
 
                     b.Property<string>("Title")
@@ -679,7 +672,6 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("leveladmitted")
-                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("ID");
@@ -846,6 +838,48 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.ToTable("BankModel");
                 });
 
+            modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ConfigurationModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AdmissionsOfficer")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("FeesDeadline")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Matriculation")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("MedicalEnds")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("MedicalStarts")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("OrientationEnds")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("OrientationStarts")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("Reporting")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Year")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ConfigurationModel");
+                });
+
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.CountryModel", b =>
                 {
                     b.Property<int>("ID")
@@ -942,6 +976,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
@@ -949,6 +986,8 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("DocumentUploadModel");
                 });
@@ -1122,11 +1161,16 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Property<bool>("ShowOnPortal")
                         .HasColumnType("boolean");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Type")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("ProgrammeModel");
                 });
@@ -1194,6 +1238,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<string>("Year")
                         .IsRequired()
                         .HasColumnType("text");
@@ -1201,6 +1248,8 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("RequirementModel");
                 });
@@ -1263,6 +1312,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<int>("SubjectId")
                         .HasColumnType("integer");
 
@@ -1278,6 +1330,8 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasIndex("ApplicantModelID");
 
                     b.HasIndex("GradeId");
+
+                    b.HasIndex("StudentModelID");
 
                     b.HasIndex("SubjectId");
 
@@ -1353,11 +1407,294 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
 
+                    b.HasIndex("StudentModelID");
+
                     b.ToTable("SMSModel");
+                });
+
+            modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ID"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("AdmissionType")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Admitted")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("AdmittedBy")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Age")
+                        .HasColumnType("text");
+
+                    b.Property<string>("AltPhone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("ApplicationNumber")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ApplicationUserId")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Awaiting")
+                        .HasColumnType("boolean");
+
+                    b.Property<DateTime>("CreatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("DateAdmitted")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("DateOfBirth")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Denomination")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("Disability")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("DisabilityType")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("DistrictId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("Elligible")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EmergencyContact")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("EntryMode")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("ExternalHostel")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("FeePaying")
+                        .HasColumnType("boolean");
+
+                    b.Property<decimal?>("FeesPaid")
+                        .HasColumnType("numeric");
+
+                    b.Property<int?>("FirstChoiceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<string>("FirstQualification")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("FormerSchool")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("FormerSchoolNewId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Gender")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("Grade")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("GuardianName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GuardianOccupation")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GuardianPhone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("GuardianRelationship")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("HallAdmitted")
+                        .HasColumnType("integer");
+
+                    b.Property<decimal?>("HallFeesPaid")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("HallId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Hometown")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("character varying(50)");
+
+                    b.Property<int?>("LastYearInSchool")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("LetterPrinted")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("MaritalStatus")
+                        .HasColumnType("text");
+
+                    b.Property<string>("MiddleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NationalIDNo")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("NationalIDType")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("NationalityId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PostGPRS")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("PreferedHall")
+                        .HasColumnType("text");
+
+                    b.Property<string>("PreviousName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ProgrammeAdmittedId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("ProgrammeStudied")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Referrals")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("RegionId")
+                        .HasColumnType("integer");
+
+                    b.Property<int?>("ReligionId")
+                        .HasColumnType("integer");
+
+                    b.Property<bool?>("Reported")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("ReportedInSchool")
+                        .HasColumnType("boolean");
+
+                    b.Property<bool?>("ResidentialStatus")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("Results")
+                        .HasColumnType("text");
+
+                    b.Property<string>("RoomNo")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("SMSSent")
+                        .HasColumnType("boolean");
+
+                    b.Property<int?>("SecondChoiceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("SecondQualification")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("SectionAdmitted")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SourceOfFinance")
+                        .HasColumnType("text");
+
+                    b.Property<bool?>("SponsorShip")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("SponsorShipCompany")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SponsorShipCompanyContact")
+                        .HasColumnType("text");
+
+                    b.Property<string>("SponsorShipLocation")
+                        .HasColumnType("text");
+
+                    b.Property<string>("Status")
+                        .HasColumnType("text");
+
+                    b.Property<int?>("ThirdChoiceId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("UpdatedOn")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("YearOfAdmission")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("leveladmitted")
+                        .HasColumnType("text");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("DistrictId");
+
+                    b.HasIndex("FormerSchoolNewId");
+
+                    b.HasIndex("HallId");
+
+                    b.HasIndex("NationalityId");
+
+                    b.HasIndex("RegionId");
+
+                    b.HasIndex("ReligionId");
+
+                    b.ToTable("StudentModel");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.SubjectModel", b =>
@@ -1423,12 +1760,17 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<int?>("StudentModelID")
+                        .HasColumnType("integer");
+
                     b.Property<DateTime>("UpdatedOn")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ApplicantModelID");
+
+                    b.HasIndex("StudentModelID");
 
                     b.ToTable("WorkingExperienceModel");
                 });
@@ -1504,6 +1846,10 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", null)
                         .WithMany("AcademicExperience")
                         .HasForeignKey("ApplicantModelID");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("AcademicExperience")
+                        .HasForeignKey("StudentModelID");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantIssueModel", b =>
@@ -1513,15 +1859,17 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasForeignKey("ApplicantModelID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("ApplicantIssueModel")
+                        .HasForeignKey("StudentModelID");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", b =>
                 {
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicationUser", "ApplicationUser")
                         .WithMany()
-                        .HasForeignKey("ApplicationUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ApplicationUserId");
 
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.DistrictModel", "District")
                         .WithMany()
@@ -1549,9 +1897,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
 
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ReligionModel", "Religion")
                         .WithMany()
-                        .HasForeignKey("ReligionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ReligionId");
 
                     b.Navigation("ApplicationUser");
 
@@ -1573,6 +1919,17 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", null)
                         .WithMany("DocumentUpload")
                         .HasForeignKey("ApplicantModelID");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("DocumentUpload")
+                        .HasForeignKey("StudentModelID");
+                });
+
+            modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ProgrammeModel", b =>
+                {
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("Programmes")
+                        .HasForeignKey("StudentModelID");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.RequirementModel", b =>
@@ -1580,6 +1937,10 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", null)
                         .WithMany("Requirement")
                         .HasForeignKey("ApplicantModelID");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("Requirement")
+                        .HasForeignKey("StudentModelID");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ResultUploadModel", b =>
@@ -1595,6 +1956,10 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                         .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("ResultUploads")
+                        .HasForeignKey("StudentModelID");
 
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.SubjectModel", "Subject")
                         .WithMany()
@@ -1612,6 +1977,59 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", null)
                         .WithMany("Sms")
                         .HasForeignKey("ApplicantModelID");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("Sms")
+                        .HasForeignKey("StudentModelID");
+                });
+
+            modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", b =>
+                {
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.DistrictModel", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.FormerSchoolModel", "FormerSchoolNew")
+                        .WithMany()
+                        .HasForeignKey("FormerSchoolNewId");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.HallModel", "Hall")
+                        .WithMany()
+                        .HasForeignKey("HallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.CountryModel", "Nationality")
+                        .WithMany()
+                        .HasForeignKey("NationalityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.RegionModel", "Region")
+                        .WithMany()
+                        .HasForeignKey("RegionId");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ReligionModel", "Religion")
+                        .WithMany()
+                        .HasForeignKey("ReligionId");
+
+                    b.Navigation("ApplicationUser");
+
+                    b.Navigation("District");
+
+                    b.Navigation("FormerSchoolNew");
+
+                    b.Navigation("Hall");
+
+                    b.Navigation("Nationality");
+
+                    b.Navigation("Region");
+
+                    b.Navigation("Religion");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.WorkingExperienceModel", b =>
@@ -1619,6 +2037,10 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", null)
                         .WithMany("WorkingExperience")
                         .HasForeignKey("ApplicantModelID");
+
+                    b.HasOne("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", null)
+                        .WithMany("WorkingExperience")
+                        .HasForeignKey("StudentModelID");
                 });
 
             modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.ApplicantModel", b =>
@@ -1628,6 +2050,25 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                     b.Navigation("ApplicantIssueModel");
 
                     b.Navigation("DocumentUpload");
+
+                    b.Navigation("Requirement");
+
+                    b.Navigation("ResultUploads");
+
+                    b.Navigation("Sms");
+
+                    b.Navigation("WorkingExperience");
+                });
+
+            modelBuilder.Entity("TTU_CORE_ADMISSION_PORTAL_REACTJS.Models.StudentModel", b =>
+                {
+                    b.Navigation("AcademicExperience");
+
+                    b.Navigation("ApplicantIssueModel");
+
+                    b.Navigation("DocumentUpload");
+
+                    b.Navigation("Programmes");
 
                     b.Navigation("Requirement");
 

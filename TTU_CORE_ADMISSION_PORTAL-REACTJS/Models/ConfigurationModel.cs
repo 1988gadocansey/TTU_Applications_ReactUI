@@ -34,6 +34,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
         [DataType(DataType.Date)]
         public DateTime Reporting { get; set; }
 
+        
 
         [DataType(DataType.Date)]
         public DateTime FeesDeadline { get; set; }

@@ -6,9 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Services;
-using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
-namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
+    namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Controllers
 {
     [Authorize]
     [ApiController]

@@ -8,7 +8,6 @@ using System.Web;
 using System.Net.Http.Headers;
 using Microsoft.EntityFrameworkCore;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
-using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
 {
@@ -100,12 +99,12 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
             MailMessage message = new MailMessage(from, to);
             message.Body = Message;
             // Include some non-ASCII characters in body and subject.
-            string someArrows = new string(new char[] { '\u2190', '\u2191', '\u2192', '\u2193' });
+            var someArrows = new string(new char[] { '\u2190', '\u2191', '\u2192', '\u2193' });
             message.Body += Environment.NewLine + someArrows;
             message.BodyEncoding = System.Text.Encoding.UTF8;
             message.Subject = "From Admissions - Takoradi Technical University" + someArrows;
             message.SubjectEncoding = System.Text.Encoding.UTF8;
-            string userState = "TTU Admissions";
+            const string userState = "TTU Admissions";
             // Set the method that is called back when the send operation ends.
             client.SendAsync(message, userState);
 
@@ -266,6 +265,12 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
             var update = _dbContext.FormNoModel.First(n => n.Year == configuration.Year);
             update.No += 1;
             return await _dbContext.SaveChangesAsync();
+        }
+
+        public ConfigurationModel? GetConfiguration()
+        {
+            var configuration = _dbContext.ConfigurationModel.OrderByDescending(b=>b.Id).FirstOrDefault();
+            return configuration;
         }
     }
 }

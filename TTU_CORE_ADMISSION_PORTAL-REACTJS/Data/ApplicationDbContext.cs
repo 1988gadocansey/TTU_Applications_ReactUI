@@ -17,6 +17,7 @@ public class ApplicationDbContext : ApiAuthorizationDbContext<ApplicationUser>
         public DbSet<AcademicExperieceModel> AcademicExperieceModel { get; set; }
 
         public DbSet<BankModel> BankModel { get; set; }
+        public DbSet<StudentModel> StudentModel { get; set; }
 
         public DbSet<DenominationModel> DenominationModel { get; set; }
 

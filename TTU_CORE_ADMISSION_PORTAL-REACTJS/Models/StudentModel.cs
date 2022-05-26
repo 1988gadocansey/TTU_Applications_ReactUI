@@ -1,4 +1,6 @@
-﻿//
+
+
+//
 //  Copyright 2021  2021
 //
 //    Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,35 +16,36 @@
 //    limitations under the License.
 
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
 {
-    public class ApplicantModel:BaseEntity
+    public class StudentModel:BaseEntity
     {
         [Key]
         public int ID { set; get; }
-        public int ApplicationNumber { set; get; }
+        public int? ApplicationNumber { set; get; }
          
-        public string Title { set; get; }
-        [Required]
+        public string? Title { set; get; }
+         
         [Display(Name = "First Name")]
         [StringLength(50, ErrorMessage = "First name cannot be longer than 50 characters.")]
-        public string FirstName { set; get; }
+        public string? FirstName { set; get; }
 
          
-
-        public string MiddleName { set; get; }
+        [FromForm]
+        public string? MiddleName { set; get; }
 
         
         [Display(Name = "Last Name")]
         [StringLength(50, MinimumLength = 3, ErrorMessage = "Last name cannot be longer than 50 characters.")]
         
-        public string LastName { set; get; }
+        public string? LastName { set; get; }
 
         
 
-        public string PreviousName { set; get; }
+        public string? PreviousName { set; get; }
 
        
         [DataType(DataType.Date)]
@@ -58,40 +61,40 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
         public string? MaritalStatus { get; set; }
 
        
-        public string Phone { get; set; }
+        public string? Phone { get; set; }
 
-        public string AltPhone { get; set; }
+        public string? AltPhone { get; set; }
       
-        public string Email { get; set; }
-        public string Address { get; set; }
-        public string PostGPRS { get; set; }
-        public string EmergencyContact { get; set; }
-        public string Hometown { get; set; }
+        public string? Email { get; set; }
+        public string? Address { get; set; }
+        public string? PostGPRS { get; set; }
+        public string? EmergencyContact { get; set; }
+        public string? Hometown { get; set; }
 
-        public int ?DistrictId { get; set; }
+        public int? DistrictId { get; set; }
         public virtual DistrictModel District { get; set; }
 
         public virtual HallModel Hall { get; set; }
 
 
 
-        public string NationalIDType { get; set; }
-        public string NationalIDNo { get; set; }
+        public string? NationalIDType { get; set; }
+        public string? NationalIDNo { get; set; }
 
         
         public int? RegionId { get; set; }
         public virtual RegionModel Region { get; set; }
 
-        public int NationalityId { get; set; }
+        public int? NationalityId { get; set; }
         public virtual CountryModel Nationality { get; set; }
 
         
         public bool?   ResidentialStatus { get; set; }
-        public string GuardianName { get; set; }
+        public string? GuardianName { get; set; }
         
-        public string GuardianPhone { get; set; }
-        public string GuardianOccupation { get; set; }
-        public string GuardianRelationship { get; set; }
+        public string? GuardianPhone { get; set; }
+        public string? GuardianOccupation { get; set; }
+        public string? GuardianRelationship { get; set; }
         public bool? Disability{ get; set; }
         public string? DisabilityType { get; set; }
         public string? SourceOfFinance { get; set; }
@@ -118,7 +121,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
         public int? LastYearInSchool { get; set; }
         public bool? Awaiting { get; set; }
         public int? Grade { get; set; }
-        public string YearOfAdmission { get; set; }
+        public string? YearOfAdmission { get; set; }
         public string? PreferedHall { get; set; }
         public string? Results { get; set; }
         public string? ExternalHostel { get; set; }
@@ -131,7 +134,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
         
         public string? leveladmitted { get; set; }
         public string? SectionAdmitted { get; set; }
-        public int HallAdmitted { get; set; }
+        public int? HallAdmitted { get; set; }
         public string? RoomNo { get; set; }
         public string? Status { get; set; }
         public bool? SMSSent { get; set; }
@@ -191,7 +194,7 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Models
 
 
 
-        public ApplicantModel()
+        public StudentModel()
         {
           
 

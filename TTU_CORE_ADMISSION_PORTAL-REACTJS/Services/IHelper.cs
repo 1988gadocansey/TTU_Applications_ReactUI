@@ -13,9 +13,9 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using System.Threading.Tasks;
+using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 
-namespace TTU_CORE_ASP_ADMISSION_PORTAL.Services
+namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
 {
     public interface IHelper
     {
@@ -49,5 +49,6 @@ namespace TTU_CORE_ASP_ADMISSION_PORTAL.Services
 
         public string GetFormNo();
         public Task<int> UpdateFormNo();
+        public ConfigurationModel? GetConfiguration();
     }
 }

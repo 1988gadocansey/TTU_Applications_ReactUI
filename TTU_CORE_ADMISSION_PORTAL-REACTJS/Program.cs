@@ -7,7 +7,6 @@ using TTU_CORE_ADMISSION_PORTAL_REACTJS.Data;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Extensions;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Models;
 using TTU_CORE_ADMISSION_PORTAL_REACTJS.Services;
-using TTU_CORE_ASP_ADMISSION_PORTAL.Services;
 
 const string AdmissionCORS = "AdmissionCORS";
 var builder = WebApplication.CreateBuilder(args);
@@ -54,6 +53,8 @@ builder.Services.AddControllersWithViews();
 });*/
 builder.Services.AddRazorPages();
 builder.Services.AddScoped<IHelper, HelperService>();
+//builder.Services.AddMvcCore().AddJsonFormatters();
+//builder.Services.AddSingleton<IHelper, HelperService>(); // to replace the add scope
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

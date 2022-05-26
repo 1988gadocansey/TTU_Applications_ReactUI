@@ -37,24 +37,22 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Services
             //    .Include(x => x.Country)
             //    .Include(x => x.Region)
             //    .ToListAsync();
-
-
-            //var Year = (DateTime.Now.Year).ToString();
-            var Year = "2022";
-
+            
+            var config = _dbContext.ConfigurationModel.OrderByDescending(b => b.Id).FirstOrDefault();
+            //var Year = config.Year.Substring(0,4);
+            var Year = config.Year;
             var formNumber = _dbContext.FormNoModel.Where(n => n.Year == Year).First();
-
-
             return formNumber.No.ToString();
             //return Ok(FormNumber.No);
         }
 
         public async Task<int> UpdateFormNoAsync()
         {
-            //var Year = (DateTime.Now.Year).ToString();
-            var Year = "2021";
-            var update = _dbContext.FormNoModel.Where(n => n.Year == Year).First();
-            update.No = update.No + 1;
+            var config = _dbContext.ConfigurationModel.OrderByDescending(b => b.Id).FirstOrDefault();
+            //var Year = config.Year.Substring(0,4);
+            var Year = config.Year;
+            var update = _dbContext.FormNoModel.FirstOrDefault();
+            update.No += 1;
             return await _dbContext.SaveChangesAsync();
         }
     }

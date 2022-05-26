@@ -19,6 +19,7 @@
 [class*= ant-] input::-ms-reveal {
   display: none;
 }
+
 /* stylelint-disable at-rule-no-unknown */
 html,
 body {

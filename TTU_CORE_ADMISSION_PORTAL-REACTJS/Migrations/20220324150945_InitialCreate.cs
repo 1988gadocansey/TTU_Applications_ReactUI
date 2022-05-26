@@ -81,6 +81,27 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ConfigurationModel",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Year = table.Column<string>(type: "text", nullable: false),
+                    OrientationStarts = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    OrientationEnds = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Matriculation = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Reporting = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    FeesDeadline = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    MedicalStarts = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    MedicalEnds = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    AdmissionsOfficer = table.Column<string>(type: "text", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ConfigurationModel", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "CountryModel",
                 columns: table => new
                 {
@@ -1006,6 +1027,9 @@ namespace TTU_CORE_ADMISSION_PORTAL_REACTJS.Migrations
 
             migrationBuilder.DropTable(
                 name: "BankModel");
+
+            migrationBuilder.DropTable(
+                name: "ConfigurationModel");
 
             migrationBuilder.DropTable(
                 name: "DenominationModel");
